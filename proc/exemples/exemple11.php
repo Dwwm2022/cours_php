@@ -28,5 +28,13 @@
     };
     $somme();
 
-    echo "Id unique : ".uniqid();
+    echo "Id unique : ".uniqid()."<br/>";
+    echo "Id unique : ".uniqid()."<br/>";
+    echo "Id unique : ".uniqid()."<br/>";
+
+    if(function_exists('valStatic')){
+        echo "La fonction existe <br/>";
+    }
+    echo "php version ".phpversion()."<br/>";
+    echo "php config ".phpinfo()."<br/>";
 ?>
