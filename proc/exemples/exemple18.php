@@ -51,6 +51,20 @@
                 
             </div>
             <div class="form-group">
+                <input type="checkbox" name="marque['Peugeot']" id="peugeot">
+                <label for="peugeot">Peugeot</label><br>
+
+                <input type="checkbox" name="marque['Renault']"  id="renault">
+                <label for="renault">Renault</label><br>
+
+                <input type="checkbox" name="marque['Tesla']"  id="tesla">
+                <label for="tesla">Tesla</label><br>
+
+                <input type="checkbox" name="marque['Ferrari']"  id="ferrari">
+                <label for="ferrari">Ferrari</label><br>
+                
+            </div>
+            <div class="form-group">
                 <label for="message">Message</label>
                 <textarea class="form-control" name="message" id="message" cols="30" rows="10"></textarea>
             </div>

@@ -7,6 +7,7 @@ if(isset($_POST['soumis'])){
     $module = $_POST['module'];
     $pays_tab = $_POST['pays'];
     $loisir = $_POST['loisir'];
+    $marque = $_POST['marque'];
 
     echo "Nom: $nom , Age: $age, Message: $message, Module: $module";
     echo "<ul>";
@@ -22,6 +23,15 @@ if(isset($_POST['soumis'])){
             echo"<li>$l</li>";
         }
         echo"</ul>";
+    }
+
+    if(isset($_POST['marque'])){
+
+        echo"<ol>";
+        foreach($marque as $k => $m){
+            echo"<li>$k</li>";
+        }
+        echo"</ol>";
     }
 }
 //  echo "<pre>";
