@@ -19,8 +19,16 @@
                 <input type="number" id="age" name="age" class="form-control" placeholder="Entrez votre âge!">
             </div>
             <div class="form-group">
+                <label for="module">Modules</label>
+                <select name="module" id="module" class="form-control">
+                    <option value="php">Php</option>
+                    <option value="sql">Sql</option>
+                    <option value="js">Js</option>
+                </select>
+            </div>
+            <div class="form-group">
                 <label for="message">Message</label>
-                <textarea class="form-control" name="message" id="message" cols="30" rows="10"></textarea>
+                <textarea class="form-control" name="message" id="message" cols="10" rows="5"></textarea>
             </div>
             <div>
                 <button type="submit" name="soumis" class="btn btn-primary">Soumettre</button>
