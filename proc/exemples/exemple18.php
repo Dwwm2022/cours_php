@@ -27,6 +27,30 @@
                 </select>
             </div>
             <div class="form-group">
+                <label for="pays">Pays visités</label>
+                <select class="form-control" name="pays[]" multiple id="pays">
+                    <option value="ca">Canada</option>
+                    <option value="es">Espagne</option>
+                    <option value="en">Angleterre</option>
+                    <option value="m">Mali</option>
+                    <option value="tu">Tunisie</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <input type="checkbox" name="loisir[]" value="sport" id="sport">
+                <label for="sport">Sport</label><br>
+
+                <input type="checkbox" name="loisir[]" value="voyage" id="voyage">
+                <label for="voyage">Voyage</label><br>
+
+                <input type="checkbox" name="loisir[]" value="lecture" id="lecture">
+                <label for="lecture">Lecture</label><br>
+
+                <input type="checkbox" name="loisir[]" value="film" id="film">
+                <label for="film">Film</label><br>
+                
+            </div>
+            <div class="form-group">
                 <label for="message">Message</label>
                 <textarea class="form-control" name="message" id="message" cols="30" rows="10"></textarea>
             </div>
