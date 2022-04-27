@@ -8,8 +8,10 @@ if(isset($_POST['soumis'])){
     $pays_tab = $_POST['pays'];
     $loisir = $_POST['loisir'];
     $marque = $_POST['marque'];
+    $genre = $_POST['genre'];
+    $secret = $_POST['secret'];
 
-    echo "Nom: $nom , Age: $age, Message: $message, Module: $module";
+    echo "Nom: $nom , Age: $age, Message: $message, Module: $module, Genre: $genre, Secret: $secret";
     echo "<ul>";
     foreach ($pays_tab as  $pays) {
         echo "<li>$pays</li>";
@@ -33,10 +35,12 @@ if(isset($_POST['soumis'])){
         }
         echo"</ol>";
     }
+    echo "<pre>";
+    var_dump($_FILES);
+    echo "</pre>";
+    $chemin = 'images/';
+    move_uploaded_file($_FILES['image']['tmp_name'],$chemin.$_FILES['image']['name']);
 }
-//  echo "<pre>";
-//  var_dump($_POST);
-//  echo "</pre>";
 
 
 ?>

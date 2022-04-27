@@ -9,7 +9,7 @@
 </head>
 <body>
     <div class="container">
-        <form action="traitement.php" method="post">
+        <form action="traitement.php" method="post" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="nom">Nom:</label>
                 <input type="text" id="nom" name="nom" class="form-control" placeholder="Entrez votre nom!">
@@ -64,10 +64,23 @@
                 <label for="ferrari">Ferrari</label><br>
                 
             </div>
+            <h2>Votre genre</h2>
+            <div class="form-group">
+                <input type="radio" name="genre" value="Féminin" id="f">
+                <label for="f">Féminin</label><br>
+
+                <input type="radio" name="genre" value="masculin" id="m">
+                <label for="m">Masculin</label><br>
+            </div>
+            <div class="form-group">
+                <label for="image">Image</label>
+                <input type="file" name="image" id="image" class="form-control">
+            </div>
             <div class="form-group">
                 <label for="message">Message</label>
                 <textarea class="form-control" name="message" id="message" cols="30" rows="10"></textarea>
             </div>
+            <input type="hidden" name="secret" value="info secret">
             <div>
                 <button type="submit" name="soumis" class="btn btn-primary">Soumettre</button>
             </div>
