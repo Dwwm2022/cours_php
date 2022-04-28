@@ -1,10 +1,17 @@
 <?php
     //var_dump($_POST); filter_var($email,FILTER_VALIDATE_EMAIL)
     if(isset($_POST['soumis'])){
-        if(isset($_POST['email']) && filter_var($_POST['email'],FILTER_VALIDATE_EMAIL) && isset($_POST['pass']) && strlen($_POST['pass']) > 3){
+        if(isset($_POST['email']) && filter_var($_POST['email'],FILTER_VALIDATE_EMAIL) && isset($_POST['pass']) && preg_match("/[a-zA-Z0-9_-]{4,6}/",$_POST['pass'] )){
             extract($_POST);
-            $email = trim($email);
+            $email = trim(addslashes(htmlentities($email)));
+            $pass = "c'est moi";
+            $pass = trim(addslashes(htmlentities($pass)));
             echo $email, $pass;
+            echo"<br/>";
+            $nom = htmlspecialchars($nom);//htmlentities()
+            echo $nom;
+            // $sql = "INSERT INTO users (email, pass)
+            // VALUES('dupond@gmail.com', 'c'est moi')";
         }else{
             $msg = '<div class="alert alert-danger">Les champs son réquis </div>';
             //echo $msg;
@@ -32,6 +39,10 @@
                 <div class="form-group">
                     <label for="email">Email*</label>
                     <input type="email" id="eamil" name="email"  class="form-control" placeholder="Entrez votre email adresse!">
+                </div>
+                <div class="form-group">
+                    <label for="nom">Nom*</label>
+                    <input type="text" id="nom" name="nom"  class="form-control" placeholder="Entrez votre nom!">
                 </div>
                 <div class="form-group">
                     <label for="pass">Mot de passe*</label>
