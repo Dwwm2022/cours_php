@@ -10,7 +10,7 @@
 <body>
     <div class="container">
         <p><a href="traitement2.php?num=6">N°Produit</a></p>
-        <form action="traitement2.php" method="get" enctype="multipart/form-data">
+        <form action="traitement2.php" method="post" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="nom">Nom:</label>
                 <input type="text" id="nom" name="nom" class="form-control" placeholder="Entrez votre nom!">

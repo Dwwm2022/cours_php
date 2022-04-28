@@ -1,5 +1,5 @@
 <?php
-//var_dump($_GET);
+var_dump($_REQUEST);
 if(isset($_GET['nom']) && isset($_GET['age'])){
     $nom = $_GET['nom'];
     $age = $_GET['age'];
@@ -14,8 +14,15 @@ if(isset($_GET['num'])){
     $num = $_GET['num'];
     if($num <= 6){
         for($i = 0; $i < $num; $i++){
-            echo "<br/> Numero:".($i + 1);
+            echo "Numero:".($i + 1)."<br/>";
         }
     }
+    echo $_REQUEST['num'];
+}
+if(isset($_POST)){
+    $nom = $_REQUEST['nom'];
+    $age = $_REQUEST['age'];
+
+    echo "$nom $age";
 }
 ?>
