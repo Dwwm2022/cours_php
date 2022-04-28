@@ -31,7 +31,6 @@ if(isset($_POST['soumis'])){
 
         echo"<ol>";
         foreach($marque as $k => $m){
-            //eval($k);
             echo"<li>".str_replace(['"',"'"], "", $k)."</li>";
         }
         echo"</ol>";
@@ -39,8 +38,12 @@ if(isset($_POST['soumis'])){
     echo "<pre>";
     var_dump($_FILES);
     echo "</pre>";
-    $chemin = 'images/';
-    move_uploaded_file($_FILES['image']['tmp_name'],$chemin.$_FILES['image']['name']);
+    if((isset($_FILES['image']['name']) && $_FILES['image']['error'] == UPLOAD_ERR_OK)){
+        $chemin = 'images/';
+        move_uploaded_file($_FILES['image']['tmp_name'],$chemin.$_FILES['image']['name']);
+    }else{
+        echo "Erreur de téléchargement";
+    }
 }
 
 
