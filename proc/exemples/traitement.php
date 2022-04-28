@@ -31,7 +31,8 @@ if(isset($_POST['soumis'])){
 
         echo"<ol>";
         foreach($marque as $k => $m){
-            echo"<li>$k</li>";
+            //eval($k);
+            echo"<li>".str_replace(['"',"'"], "", $k)."</li>";
         }
         echo"</ol>";
     }
