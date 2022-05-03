@@ -3,9 +3,18 @@ require_once('../../connect.php');
 if(isset($_POST['soumis']) && !empty($_POST['libelle'])){
     $libelle = trim(addslashes(htmlentities($_POST['libelle'])));
     $drapeau = $_FILES['drapeau']['name'];
-    var_dump($_POST);
-    echo"<br/>";
-    var_dump($_FILES);
+    $destination = "../../assets/images/";
+    move_uploaded_file($_FILES['drapeau']['tmp_name'],
+     $destination.$_FILES['drapeau']['name']);
+
+    $sql = "INSERT INTO langues (libelle,drapeau)
+            VALUES('$libelle','$drapeau')";
+    $res = mysqli_query($base, $sql);
+    if($res){
+        header('location:list_l.php');
+    }else{
+        echo "Echec d'insertion...";
+    }
 }
 
 ?>
