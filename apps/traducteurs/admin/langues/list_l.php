@@ -10,6 +10,9 @@ if ($base) {
 ?>
 <?php require_once('../../partials/header.php'); ?>
 <h1>La liste des langues</h1>
+<div class="text-end">
+    <a href="add_l.php" class="btn btn-secondary">Ajouter</a>
+</div>
 <table class="table table-striped">
     <thead class="thead-primary">
         <tr>
@@ -28,7 +31,7 @@ if ($base) {
         <tr>
             <td><?=$row['id'] ;?></td>
             <td><?=$row['libelle']; ?></td>
-            <td><?=$row['drapeau']; ?></td>
+            <td><img src="../../assets/images/<?=$row['drapeau']; ?>" alt="" width="50" /></td>
             <td><?=$row['created']; ?></td>
             <td>
                 <a href="" class="btn btn-warning">Edit</a>
