@@ -1,7 +1,12 @@
 <?php
 require_once('../../connect.php');
 if ($base) {
-    $sql = "SELECT * FROM personnes";
+    if(isset($_GET['search'])){
+        $search = trim(htmlspecialchars(addslashes($_GET['search'])));
+        $sql = "SELECT * FROM personnes WHERE nom  LIKE '$search%'";
+    }else{
+        $sql = "SELECT * FROM personnes";
+    }
     $res = mysqli_query($base, $sql);
 }
 
@@ -9,16 +14,19 @@ if ($base) {
 <?php require_once('../../partials/header.php'); ?>
 <h1>La liste des personnes</h1>
 <div class="col-8 offset-4">
-    <form class="row row-cols-lg-auto g-3 align-items-center">
+    <form method="get" action="<?php $_SERVER['PHP_SELF'] ?>" class="row row-cols-lg-auto g-3 align-items-center">
         <div class="col-12">
             <div class="input-group">
-                <input type="search" class="form-control" id="search" name="search" placeholder="Rechercher..." />
+                <input  type="search" class="form-control" id="search" name="search" placeholder="Rechercher..." />
             </div>
         </div>
         <div class="col-12">
             <button type="submit" class="btn btn-primary">Rechercher</button>
         </div>
     </form>
+</div>
+<div class="text-end">
+    <a href="add_p.php" class="btn btn-secondary">Ajouter</a>
 </div>
 <table class="table table-striped">
     <thead>
