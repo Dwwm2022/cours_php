@@ -12,6 +12,7 @@ if ($base) {
 <h1>La liste des langues</h1>
 <div class="text-end">
     <a href="add_l.php" class="btn btn-secondary">Ajouter</a>
+    <a href="../personnes/list_p.php" class="btn btn-info"><i class="fas fa-users"></i></a>
 </div>
 <table class="table table-striped">
     <thead class="thead-primary">

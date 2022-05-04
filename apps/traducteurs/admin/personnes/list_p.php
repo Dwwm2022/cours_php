@@ -27,6 +27,7 @@ if ($base) {
 </div>
 <div class="text-end">
     <a href="add_p.php" class="btn btn-secondary">Ajouter</a>
+    <a href="../langues/list_l.php" class="btn btn-info"><i class="fas fa-language"></i></a>
 </div>
 <table class="table table-striped">
     <thead class="bg-light table-primary">
