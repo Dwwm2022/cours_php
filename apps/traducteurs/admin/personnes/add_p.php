@@ -1,3 +1,30 @@
+<?php
+require_once('../../connect.php');
+if ($base) {
+    $sql = "SELECT * FROM langues";
+    $res = mysqli_query($base, $sql);
+}
+if(isset($_POST['soumis']) && !empty($_POST['nom']) && filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)){
+    $nom = trim(addslashes(htmlentities($_POST['nom'])));
+    $prenom = trim(addslashes(htmlentities($_POST['prenom'])));
+    $age = (int)trim(addslashes(htmlentities($_POST['age'])));
+    $telephone = (int)trim(addslashes(htmlentities($_POST['telephone'])));
+    $email = trim(addslashes(htmlentities($_POST['email'])));
+    $langue = (int)trim(addslashes(htmlentities($_POST['langue'])));
+    $description = trim(addslashes(htmlentities($_POST['description'])));
+    $image = $_FILES['image']['name'];
+
+    $destination = "../../assets/images/";
+    move_uploaded_file($_FILES['image']['tmp_name'], $destination.$_FILES['image']['name']);
+    echo"<pre>";
+    var_dump($_FILES);
+    echo"</pre>";
+
+    // if($base){
+    //     $req = "INSERT INTO"
+    // }
+}
+?>
 <?php require_once('../../partials/header.php'); ?>
 <div class="col-6 offset-3 my-3">
     <h1>Ajout d'un traducteur</h1>
@@ -20,15 +47,18 @@
             <label class="form-label" for="nom">Telephone*</label>
         </div>
         <div class="form-outline mb-2">
-            <input type="email" id="email" class="form-control" required />
+            <input type="email" id="email" name="email" class="form-control" required />
             <label class="form-label" for="email">Email adresse*</label>
         </div>
         <div class="col-12 mb-2">
             <label class="" for="langue">Langue*</label>
             <select class="select form-control" id="langue" name="langue" required>
                 <option value="0" hidden>Choisir</option>
-                <option value="2">Français</option>
-                <option value="3">Anglais</option>
+                <?php if ($res) {
+                    while ($langue = mysqli_fetch_assoc($res)) { ?>
+                        <option value="<?=$langue['id'];?>"><?=ucfirst($langue['libelle']);?></option>
+                <?php }
+                } ?>
             </select>
         </div>
         <div class="mb-4">
