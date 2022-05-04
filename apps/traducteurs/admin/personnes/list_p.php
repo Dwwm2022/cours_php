@@ -29,7 +29,7 @@ if ($base) {
     <a href="add_p.php" class="btn btn-secondary">Ajouter</a>
 </div>
 <table class="table table-striped">
-    <thead>
+    <thead class="bg-light table-primary">
         <tr>
             <th>Nom</th>
             <th>Prénom</th>
