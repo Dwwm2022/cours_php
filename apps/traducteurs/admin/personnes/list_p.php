@@ -65,7 +65,7 @@ if ($base) {
 
                     <td>
                         <a href="" class="btn btn-info">Détail</a>
-                        <a href="" class="btn btn-warning">Editer</a>
+                        <a href="edit_p.php?id=<?=$line['id_p'];?>" class="btn btn-warning">Editer</a>
                         <a href="" class="btn btn-danger">Supprimer</a>
                     </td>
                 </tr>
