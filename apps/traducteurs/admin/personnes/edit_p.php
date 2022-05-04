@@ -10,8 +10,10 @@ if ($base) {
         $res3 = mysqli_query($base, $sql2);
         if($res3){
             $person = mysqli_fetch_assoc($res3);
+            //var_dump($person);die;
             $libelle = "";
-            while($row = mysqli_fetch_assoc($res)){
+            $res4 = mysqli_query($base, $sql);
+            while($row = mysqli_fetch_assoc($res4)){
                 if($row['id'] == $person['id_langue']){
                     $libelle = $row['libelle'];
                 }
@@ -22,6 +24,7 @@ if ($base) {
 $errMsg = "";
 if (isset($_POST['soumis'])) { 
     if (!empty($_POST['nom']) && filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
+        $id = (int)trim(addslashes(htmlentities($_POST['id'])));
         $nom = trim(addslashes(htmlentities($_POST['nom'])));
         $prenom = trim(addslashes(htmlentities($_POST['prenom'])));
         $age = (int)trim(addslashes(htmlentities($_POST['age'])));
@@ -33,16 +36,26 @@ if (isset($_POST['soumis'])) {
 
         $destination = "../../assets/images/";
         move_uploaded_file($_FILES['image']['tmp_name'], $destination . $_FILES['image']['name']);
-        // echo"<pre>";
-        // var_dump($_FILES);
-        // echo"</pre>";
-        
+        echo"<pre>";
+        var_dump($_POST);
+        echo"</pre>";
+        if(empty($langue)){
+            
+        }
 
         if ($base) {
-            $req = "INSERT INTO personnes (nom, prenom, age, telephone, email, description,image, id_langue)
-            VALUES('$nom','$prenom','$age','$telephone','$email','$description','$image','$langue')";
+            if($image == ""){
+                $req = "UPDATE personnes 
+                SET nom = '$nom', prenom = '$prenom', age = '$age', telephone = '$telephone', email = '$email',id_langue = '$langue', description = '$description'
+                WHERE id_p = '$id'";
+            }else{
+                $req = "UPDATE personnes 
+                SET nom = '$nom', prenom = '$prenom', age = '$age', telephone = '$telephone', email = '$email',id_langue = '$langue', description = '$description', image = '$image'
+                WHERE id_p = '$id'";
+            }
+           
             $res2 = mysqli_query($base, $req);
-            //var_dump(($res2));
+            var_dump(($res2));
             if ($res2) {
                 header('location:list_p.php');
             } else {
@@ -58,9 +71,10 @@ if (isset($_POST['soumis'])) {
 ?>
 <?php require_once('../../partials/header.php'); ?>
 <div class="col-6 offset-3 my-3">
-    <h1>Edition d'un traducteur</h1>
+    <h1>Edition du traducteur N° 000<?=$person['id_p'];?></h1>
     <?= $errMsg; ?>
     <form action="<?php $_SERVER['PHP_SELF']; ?>" method="POST" enctype="multipart/form-data">
+        <input type="hidden" name="id" value="<?=$person['id_p'];?>"/>
         <div class="form-outline mb-4">
             <input type="text" id="nom" name="nom" class="form-control" value="<?=$person['nom'];?>" required />
             <label class="form-label" for="nom">Nom*</label>
@@ -85,7 +99,7 @@ if (isset($_POST['soumis'])) {
         <div class="col-12 mb-2">
             <label class="" for="langue">Langue*</label>
             <select class="select form-control" id="langue" name="langue" required>
-                <option value="<?=$langue['id_langue'];?>" hidden><?=ucfirst($libelle);?></option>
+                <option value="<?=$person['id_langue'];?>" hidden><?=ucfirst($libelle);?></option>
                 <?php if ($res) {
                     while ($langue = mysqli_fetch_assoc($res)) { ?>
                         <option value="<?= $langue['id']; ?>"><?= ucfirst($langue['libelle']); ?></option>
@@ -95,7 +109,7 @@ if (isset($_POST['soumis'])) {
         </div>
         <div class="mb-4">
             <label class="form-label" for="image">Image*</label>
-            <input type="file" id="image" name="image" class="form-control" required />
+            <input type="file" id="image" name="image" class="form-control"/>
             <img src="../../assets/images/<?=$person['image'];?>" alt="" width="50">
         </div>
 
