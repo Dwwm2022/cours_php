@@ -3,9 +3,9 @@ require_once('../../connect.php');
 if ($base) {
     if(isset($_GET['search'])){
         $search = trim(htmlspecialchars(addslashes($_GET['search'])));
-        $sql = "SELECT * FROM personnes WHERE nom  LIKE '$search%'";
+        $sql = "SELECT * FROM personnes WHERE nom  LIKE '$search%' ORDER BY id_p DESC";
     }else{
-        $sql = "SELECT * FROM personnes";
+        $sql = "SELECT * FROM personnes ORDER BY id_p DESC";
     }
     $res = mysqli_query($base, $sql);
 }
