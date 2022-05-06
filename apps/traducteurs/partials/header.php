@@ -37,10 +37,8 @@
               <a class="dropdown-toggle d-flex align-items-center hidden-arrow text-white" href="#" id="navbarDropdownMenuAvatar" role="button" data-mdb-toggle="dropdown" aria-expanded="false">
                 <?php
                 if (isset($_SESSION['user'])) {
-                  echo $_SESSION['user']['email'];
-                } else {
-                  
-                }
+                  echo "<i class='fas fa-tools fa-2x'></i> ".$_SESSION['user']['email'];
+                } 
                 ?>
               </a>
               <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuAvatar">

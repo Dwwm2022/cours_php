@@ -23,8 +23,9 @@ if (isset($_POST['soumis'])) {
                     session_start();
                     $_SESSION['user'] = $data;
                     // echo'<pre>';
-                    // var_dump($_SESSION); die;
+                    // var_dump($_SESSION); 
                     // echo'<pre>';
+                    // die;
                     header('location:personnes/list_p.php');
                 }else{
                     $error = '<div class="alert alert-danger">

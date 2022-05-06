@@ -1,27 +1,33 @@
 <?php
+require_once('./connect.php');
+if($base){
+    $sql = "SELECT * FROM personnes, langues
+            WHERE personnes.id_langue = langues.id";
+    $sql2 = "SELECT * FROM personnes 
+            INNER JOIN langues 
+            ON personnes.id_langue = langues.id";
+    $res = mysqli_query($base, $sql);
+}
 ?>
 <?php require_once('partials/header.php'); ?>
-<div class="row my-5">
+<div class="row my-3">
+    <h1 class="text-center">Traducteurs-Pro</h1>
     <div class="col-9">
         <div class="row">
-            <div class="col-sm-6">
+            <?php if($res){while($data = mysqli_fetch_assoc($res)){ ?>
+            <div class="col-sm-6 my-2">
                 <div class="card">
+                    <div class="card-header">
+                        <img class="img-fluid img-thumbnail" src="./assets/images/<?=$data['image'];?>" alt="">
+                    </div>
                     <div class="card-body">
-                        <h5 class="card-title">Special title treatment</h5>
-                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                        <h5 class="card-title">Mr/Mme <?=ucfirst($data['prenom']);?> <?=strtoupper($data['nom']);?></h5>
+                        <p class="card-text"><?=$data['description'];?></p>
+                        <a href="#" class="btn btn-primary">Plus!</a>
                     </div>
                 </div>
             </div>
-            <div class="col-sm-6">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Special title treatment</h5>
-                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
-                    </div>
-                </div>
-            </div>
+            <?php }} ?>
         </div>
     </div>
     <div class="col-3">
