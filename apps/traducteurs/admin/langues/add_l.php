@@ -1,4 +1,5 @@
 <?php
+require_once('../../security/auth.php');
 require_once('../../connect.php');
 if(isset($_POST['soumis']) && !empty($_POST['libelle'])){
     $libelle = trim(addslashes(htmlentities($_POST['libelle'])));

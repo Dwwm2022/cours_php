@@ -1,7 +1,9 @@
 <?php
+require_once('../../security/auth.php');
 require_once('../../connect.php');
-if (isset($_GET['id'])) {
+if (isset($_GET['id']) && isset($_GET['libelle'])) {
     $id = trim(htmlentities(addslashes($_GET['id'])));
+    $libelle = trim(htmlentities(addslashes($_GET['libelle'])));
     if ($base) {
         $sql = "SELECT * FROM personnes WHERE id_p = " . $id;
         $res = mysqli_query($base, $sql);
@@ -31,7 +33,7 @@ if (isset($_GET['id'])) {
                         <li class="list-group-item px-3"><b>Age: </b> <?= $data['age']; ?></li>
                         <li class="list-group-item px-3"><b>Email: </b> <?= $data['email']; ?></li>
                         <li class="list-group-item px-3"><b>Téléphone: </b> <?= $data['telephone']; ?></li>
-                        <li class="list-group-item px-3"><b>Langue: </b> <?= $data['id_langue']; ?></li>
+                        <li class="list-group-item px-3"><b>Langue: </b> <?= ucfirst($libelle); ?></li>
 
                     </ul>
                     <p class="card-text">

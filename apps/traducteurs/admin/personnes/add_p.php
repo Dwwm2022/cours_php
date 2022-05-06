@@ -1,4 +1,5 @@
 <?php
+require_once('../../security/auth.php');
 require_once('../../connect.php');
 if ($base) {
     $sql = "SELECT * FROM langues";

@@ -1,10 +1,11 @@
 <?php
+require_once('../../security/auth.php');
 require_once('../../connect.php');
 if ($base) {
-    if(isset($_GET['search'])){
+    if (isset($_GET['search'])) {
         $search = trim(htmlspecialchars(addslashes($_GET['search'])));
         $sql = "SELECT * FROM personnes WHERE nom  LIKE '$search%' ORDER BY id_p DESC";
-    }else{
+    } else {
         $sql = "SELECT * FROM personnes ORDER BY id_p DESC";
     }
     $res = mysqli_query($base, $sql);
@@ -17,7 +18,7 @@ if ($base) {
     <form method="get" action="<?php $_SERVER['PHP_SELF'] ?>" class="row row-cols-lg-auto g-3 align-items-center">
         <div class="col-12">
             <div class="input-group">
-                <input  type="search" class="form-control" id="search" name="search" placeholder="Rechercher..." />
+                <input type="search" class="form-control" id="search" name="search" placeholder="Rechercher..." />
             </div>
         </div>
         <div class="col-12">
@@ -39,7 +40,9 @@ if ($base) {
             <th>Email</th>
             <th>Image</th>
             <th>Langue</th>
+            <?php if($_SESSION['user']['role'] == 1){?>
             <th colspan="3" class="text-center">Actions</th>
+            <?php } ?>
         </tr>
     </thead>
     <tbody>
@@ -52,7 +55,6 @@ if ($base) {
                 if (isset($error)) {
                     echo $error;
                 }
-                // var_dump($row);
         ?>
                 <tr>
                     <td><?= $line['nom']; ?></td>
@@ -63,12 +65,13 @@ if ($base) {
                     <td><img src="../../assets/images/<?= $line['image']; ?>" alt="" width="80" /> </td>
                     <!-- <td><?= $line['id_langue']; ?></td> -->
                     <td><?= $row['libelle']; ?></td>
-
+                    <?php if($_SESSION['user']['role'] == 1){?>
                     <td>
-                        <a href="detail_p.php?id=<?=$line['id_p'];?>" class="btn btn-info">Détail</a>
-                        <a href="edit_p.php?id=<?=$line['id_p'];?>" class="btn btn-warning">Editer</a>
-                        <a href="delete_p.php?id=<?=$line['id_p'];?>" class="btn btn-danger">Supprimer</a>
+                        <a href="detail_p.php?id=<?= $line['id_p']; ?>&libelle=<?= $row['libelle']; ?>" class="btn btn-info">Détail</a>
+                        <a href="edit_p.php?id=<?= $line['id_p']; ?>" class="btn btn-warning">Editer</a>
+                        <a onclick="return confirm('Etes vous sûr ...');" href="delete_p.php?id=<?= $line['id_p']; ?>" class="btn btn-danger">Supprimer</a>
                     </td>
+                    <?php } ?>
                 </tr>
         <?php }
         } ?>
