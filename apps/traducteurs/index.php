@@ -23,7 +23,7 @@ if($base){
                     <div class="card-body">
                         <h5 class="card-title">Mr/Mme <?=ucfirst($data['prenom']);?> <?=strtoupper($data['nom']);?></h5>
                         <p class="card-text"><?=$data['description'];?></p>
-                        <a href="#" class="btn btn-primary">Plus!</a>
+                        <a href="detail.php?id=<?=$data['id_p'];?>" class="btn btn-primary">Plus!</a>
                     </div>
                 </div>
             </div>
