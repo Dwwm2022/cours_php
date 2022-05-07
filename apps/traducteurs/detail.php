@@ -25,25 +25,43 @@ if ($base) {
                 $message = "
                 <html>
                     <head>
+                        <style>
+                            h1,h2{
+                                color:blue;
+                            }
+                            ul{
+                                background-color:grey;
+                                color: white;
+                            }
+                        </style>
                         <title>Traducteurs Pro</title>
                     </head>
                     <body>
-                        <h1>Vous devez contacter Mr/Mme:</h1>
-                        <p>Infos traducteur:Id ".$data['id_p']." Nom".$data['nom']." Prénom".$data['prenom']."</p>
-                        <p>Nom:" . $nom . "</p>
-                        <p>Prénom:" . $prenom . "</p>
+                        <h1>Etablir la mise en relation de Mr/Mme:" . $prenom . "  " . strtoupper($nom) . "</h1>
                         <p>Email:" . $email . "</p>
                         <p>Message:" . $message . "</p>
+                        <h2>Avec le/la traducteur(trice) de numero " . $data['id_p'] . "</h2>
+                        <ul>
+                            <li>Id: " . $data['id_p'] . "</li>
+                            <li>Nom: " . $data['nom'] . "</li>
+                            <li>Prenom: " . $data['prenom'] . "</li>
+                            <li>Telephone: " . $data['telephone'] . "</li>
+                            <li>Email: " . $data['email'] . "</li>
+                        </ul>
                     </body>
                 </html>
             ";
-            $headers[] = "De Traducteurs Pro <dwwm94@gmail.com";
-            $headers[] = "From:  <$email>";
-            $headers[] = "Reply-To:  $nom <$email>";
+                // Pour envoyer un mail HTML, l'en-tête Content-type doit être défini
+                $headers[] = 'MIME-Version: 1.0';
+                $headers[] = 'Content-type: text/html; charset=utf-8';
 
-            mail($to, $subject, $message, implode("\r\n",$headers));
-            mail($email, "Traducteurs Pro", "Merci pour votre mail, vous serez contacté très prochainement");
+                $headers[] = "De Traducteurs Pro <dwwm94@gmail.com";
+                $headers[] = "From:  <$email>";
+                $headers[] = "Reply-To:  $nom <$email>";
 
+                if (mail($to, $subject,$message, implode("\r\n", $headers))) {
+                    mail($email, "Traducteurs Pro", "Merci pour votre mail, vous serez contacté très prochainement");
+                }
             }
         }
     }
@@ -54,11 +72,11 @@ if ($base) {
 
     <div class="row g-0">
         <div class="col-md-3">
-            <img src="./assets/images/<?= $data['image']; ?>" alt="Trendy Pants and Shoes" class="img-fluid rounded-start" />
+            <img src="./assets/images/<?= $data['image']; ?>" alt="Trendy Pants and Shoes" class="img-fluid rounded-start img-thumbnail" />
         </div>
         <div class="col-md-5">
             <div class="card-body">
-                <h3 class="card-title">Informations du traducteur</h3>
+                <h3 class="card-title"><img src="./assets/images/<?=$data['drapeau'];?>" alt="" width="30" ?> Informations du traducteur</h3>
                 <ul class="list-group list-group-light list-group-small">
                     <li class="list-group-item text-center text-white">
                         <ul class="list-group list-group-light">
@@ -68,7 +86,7 @@ if ($base) {
                                         <p class="fw-bold mb-1">Nom:</p>
                                     </div>
                                 </div>
-                                <span class="badge rounded-pill badge-primary"><?= $data['nom']; ?></span>
+                                <span class="text-primary"><?= $data['nom']; ?></span>
                             </li>
                             <li class="list-group-item d-flex justify-content-between align-items-center">
                                 <div class="d-flex align-items-center">
@@ -76,7 +94,7 @@ if ($base) {
                                         <p class="fw-bold mb-1">Prénom</p>
                                     </div>
                                 </div>
-                                <span class="badge rounded-pill badge-primary"><?= $data['prenom']; ?></span>
+                                <span class="text-primary"><?= $data['prenom']; ?></span>
                             </li>
                             <li class="list-group-item d-flex justify-content-between align-items-center">
                                 <div class="d-flex align-items-center">
@@ -84,15 +102,15 @@ if ($base) {
                                         <p class="fw-bold mb-1">Langue</p>
                                     </div>
                                 </div>
-                                <span class="badge rounded-pill badge-primary"><?= $data['libelle']; ?></span>
+                                <span class="text-primary"><?= $data['libelle']; ?></span>
                             </li>
-                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                <div class="d-flex align-items-center">
+                            <li class="list-group-item d-flex justify-content-start">
+                                <div class="d-flex">
                                     <div class="ms-3">
                                         <p class="fw-bold mb-1">Description:</p>
+                                        <p class="card-text text-dark"><?= $data['description']; ?></p>
                                     </div>
                                 </div>
-                                <span class="badge rounded-pill badge-primary"><?= $data['description']; ?></span>
                             </li>
                         </ul>
                     </li>
@@ -123,7 +141,7 @@ if ($base) {
                     <label for="message">Message*</label>
                     <textarea class="form-control" placeholder="Entrer votre message" name="message" id="message" rows="5" required></textarea>
                 </div>
-                <div><button class="btn btn-primary col-12" name="soumis" type="submit">Envoyer</button></div>
+                <div class="mt-2"><button class="btn btn-primary col-12" name="soumis" type="submit"><i class="fas fa-paper-plane"></i> Envoyer</button></div>
             </form>
         </div>
     </div>

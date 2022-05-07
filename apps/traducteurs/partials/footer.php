@@ -1,4 +1,4 @@
-<footer class="bg-primary text-center text-white">
+<footer class="bg-primary text-center text-white container mt-3">
   <div class="container p-4 pb-0">
     <section class="">
       <form action="">
