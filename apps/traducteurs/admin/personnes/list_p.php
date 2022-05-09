@@ -13,8 +13,8 @@ if ($base) {
 
 ?>
 <?php require_once('../../partials/header.php'); ?>
-<h1>La liste des personnes</h1>
-<div class="col-8 offset-4">
+<h1 class="display-6">La liste des traducteurs</h1>
+<div class="col-8 offset-4 search">
     <form method="get" action="<?php $_SERVER['PHP_SELF'] ?>" class="row row-cols-lg-auto g-3 align-items-center">
         <div class="col-12">
             <div class="input-group">
@@ -22,15 +22,15 @@ if ($base) {
             </div>
         </div>
         <div class="col-12">
-            <button type="submit" class="btn btn-primary">Rechercher</button>
+            <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i></button>
         </div>
     </form>
 </div>
-<div class="text-end">
-    <a href="add_p.php" class="btn btn-secondary">Ajouter</a>
+<div class="text-end mb-2">
+    <a href="add_p.php" class="btn btn-secondary"><i class="fas fa-plus"></i> Ajouter</a>
     <a href="../langues/list_l.php" class="btn btn-info"><i class="fas fa-language"></i></a>
 </div>
-<table class="table table-striped">
+<table class="table table-striped text-center">
     <thead class="bg-light table-primary">
         <tr>
             <th>Nom</th>
@@ -40,8 +40,8 @@ if ($base) {
             <th>Email</th>
             <th>Image</th>
             <th>Langue</th>
-            <?php if($_SESSION['user']['role'] == 1){?>
-            <th colspan="3" class="text-center">Actions</th>
+            <?php if ($_SESSION['user']['role'] == 1) { ?>
+                <th colspan="3" class="text-center">Actions</th>
             <?php } ?>
         </tr>
     </thead>
@@ -65,12 +65,12 @@ if ($base) {
                     <td><img src="../../assets/images/<?= $line['image']; ?>" alt="" width="80" /> </td>
                     <!-- <td><?= $line['id_langue']; ?></td> -->
                     <td><?= $row['libelle']; ?></td>
-                    <?php if($_SESSION['user']['role'] == 1){?>
-                    <td>
-                        <a href="detail_p.php?id=<?= $line['id_p']; ?>&libelle=<?= $row['libelle']; ?>" class="btn btn-info">Détail</a>
-                        <a href="edit_p.php?id=<?= $line['id_p']; ?>" class="btn btn-warning">Editer</a>
-                        <a onclick="return confirm('Etes vous sûr ...');" href="delete_p.php?id=<?= $line['id_p']; ?>" class="btn btn-danger">Supprimer</a>
-                    </td>
+                    <?php if ($_SESSION['user']['role'] == 1) { ?>
+                        <td>
+                            <a href="detail_p.php?id=<?= $line['id_p']; ?>&libelle=<?= $row['libelle']; ?>" class="btn btn-info"><i class="fas fa-info"></i> Détail</a>
+                            <a href="edit_p.php?id=<?= $line['id_p']; ?>" class="btn btn-warning"><i class="fas fa-edit"></i> Editer</a>
+                            <a onclick="return confirm('Etes vous sûr ...');" href="delete_p.php?id=<?= $line['id_p']; ?>" class="btn btn-danger"><i class="fas fa-trash"></i> Supprimer</a>
+                        </td>
                     <?php } ?>
                 </tr>
         <?php }

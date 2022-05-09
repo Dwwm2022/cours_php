@@ -43,6 +43,11 @@ if (isset($_POST['soumis'])) {
 }
 ?>
 <?php require_once('../../partials/header.php'); ?>
+<div class="text-end">
+    <a href="list_p.php">
+        <i class="fas fa-list-alt text-dark fa-3x"></i>
+    </a>
+</div>
 <div class="col-6 offset-3 my-3">
     <h1>Ajout d'un traducteur</h1>
     <?= $errMsg; ?>
@@ -90,7 +95,7 @@ if (isset($_POST['soumis'])) {
         </div>
 
         <!-- Submit button -->
-        <button type="submit" name="soumis" class="btn btn-primary btn-block">Envoyer</button>
+        <button type="submit" name="soumis" class="btn btn-primary btn-block"><i class="fas fa-paper-plane"></i> Envoyer</button>
     </form>
 </div>
 <?php require_once('../../partials/footer.php'); ?>

@@ -1,6 +1,7 @@
 <?php
 require_once('./connect.php');
 if ($base) {
+    $successMsg = "";
     if (isset($_GET['id'])) {
         $id = trim(htmlentities(addslashes($_GET['id'])));
         $sql = "SELECT * FROM personnes, langues
@@ -18,8 +19,12 @@ if ($base) {
 
 
             if (isset($_POST['soumis'])) {
-                var_dump($_POST);
+                //var_dump($_POST);
                 extract($_POST);
+                $nom = trim(htmlspecialchars(addslashes($nom)));
+                $prenom = trim(htmlspecialchars(addslashes($prenom)));
+                $email = trim(htmlspecialchars(addslashes($email)));
+
                 $to = 'dwwm94@gmail.com';
                 $subject = $objet;
                 $message = "
@@ -40,27 +45,31 @@ if ($base) {
                         <h1>Etablir la mise en relation de Mr/Mme:" . $prenom . "  " . strtoupper($nom) . "</h1>
                         <p>Email:" . $email . "</p>
                         <p>Message:" . $message . "</p>
-                        <h2>Avec le/la traducteur(trice) de numero " . $data['id_p'] . "</h2>
+                        <h2>Avec le/la traducteur(trice) de N° " . $data['id_p'] . "</h2>
                         <ul>
                             <li>Id: " . $data['id_p'] . "</li>
                             <li>Nom: " . $data['nom'] . "</li>
-                            <li>Prenom: " . $data['prenom'] . "</li>
-                            <li>Telephone: " . $data['telephone'] . "</li>
+                            <li>Prénom: " . $data['prenom'] . "</li>
+                            <li>Téléphone: " . $data['telephone'] . "</li>
                             <li>Email: " . $data['email'] . "</li>
                         </ul>
                     </body>
                 </html>
             ";
-                // Pour envoyer un mail HTML, l'en-tête Content-type doit être défini
-                $headers[] = 'MIME-Version: 1.0';
-                $headers[] = 'Content-type: text/html; charset=utf-8';
+                 // Pour envoyer un mail HTML, l'en-tête Content-type doit être défini
+                    $headers[] = 'MIME-Version: 1.0';
+                    $headers[] = 'Content-type: text/html; charset=utf-8';
 
-                $headers[] = "De Traducteurs Pro <dwwm94@gmail.com";
-                $headers[] = "From:  <$email>";
-                $headers[] = "Reply-To:  $nom <$email>";
+                    // En-têtes additionnels
+                    $headers[] = "To: Dwwm <dwwm94@gmail.com>, Adimi <adimicool@gmail.com>";
+                    $headers[] = "From: No-Reply <$email>";
+                    $headers[] = "Reply-To: $nom <$email>";
+                    $headers[] = 'Cc: ';
+                    $headers[] = 'Bcc: ';
 
-                if (mail($to, $subject,$message, implode("\r\n", $headers))) {
+                if (mail($to, $subject, $message, implode("\r\n", $headers))) {
                     mail($email, "Traducteurs Pro", "Merci pour votre mail, vous serez contacté très prochainement");
+                    $successMsg = "<div class='alert alert-success text-center'>Mail envoyé avec succès!</div>";
                 }
             }
         }
@@ -69,7 +78,6 @@ if ($base) {
 ?>
 <?php require_once('partials/header.php'); ?>
 <div class="card mb-3">
-
     <div class="row g-0">
         <div class="col-md-3">
             <img src="./assets/images/<?= $data['image']; ?>" alt="Trendy Pants and Shoes" class="img-fluid rounded-start img-thumbnail" />
@@ -108,7 +116,7 @@ if ($base) {
                                 <div class="d-flex">
                                     <div class="ms-3">
                                         <p class="fw-bold mb-1">Description:</p>
-                                        <p class="card-text text-dark"><?= $data['description']; ?></p>
+                                        <p class="note note-primary"><?= $data['description']; ?></p>
                                     </div>
                                 </div>
                             </li>
@@ -120,6 +128,7 @@ if ($base) {
         </div>
         <div class="col-md-4 mt-4">
             <h5>Contactez ce traducteur</h5>
+            <?= $successMsg; ?>
             <form action="<?php $_SERVER['PHP_SELF']; ?>" method="post">
                 <div class="form-group">
                     <label for="nom">Nom*</label>

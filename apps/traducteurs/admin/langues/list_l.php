@@ -10,13 +10,13 @@ if ($base) {
 
 ?>
 <?php require_once('../../partials/header.php'); ?>
-<h1>La liste des langues</h1>
-<div class="text-end">
-    <a href="add_l.php" class="btn btn-secondary">Ajouter</a>
+<h1 class="display-6">La liste des langues</h1>
+<div class="text-end mb-2">
+    <a href="add_l.php" class="btn btn-secondary"><i class="fas fa-plus"></i> Ajouter</a>
     <a href="../personnes/list_p.php" class="btn btn-info"><i class="fas fa-users"></i></a>
 </div>
-<table class="table table-striped">
-    <thead class="thead-primary">
+<table class="table table-striped text-center">
+    <thead class="bg-light table-primary">
         <tr>
             <th>Id</th>
             <th>Libellé</th>
@@ -36,8 +36,8 @@ if ($base) {
             <td><img src="../../assets/images/<?=$row['drapeau']; ?>" alt="" width="50" /></td>
             <td><?=$row['created']; ?></td>
             <td>
-                <a href="" class="btn btn-warning">Edit</a>
-                <a href="" class="btn btn-danger">Supprimer</a>
+                <a href="" class="btn btn-warning"><i class="fas fa-edit"></i> Edit</a>
+                <a href="" class="btn btn-danger"><i class="fas fa-trash"></i> Supprimer</a>
             </td>
         </tr>
     <?php } } ?>

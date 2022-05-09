@@ -15,7 +15,7 @@ if (isset($_GET['id']) && isset($_GET['libelle'])) {
 <?php require_once('../../partials/header.php') ?>
 <div class="text-end">
     <a href="list_p.php">
-        <i class="fas fa-list-alt text-primary fa-3x"></i>
+        <i class="fas fa-list-alt text-dark fa-3x"></i>
     </a>
 </div>
 <div class="col-6 offset-3 my-5">
@@ -36,7 +36,7 @@ if (isset($_GET['id']) && isset($_GET['libelle'])) {
                         <li class="list-group-item px-3"><b>Langue: </b> <?= ucfirst($libelle); ?></li>
 
                     </ul>
-                    <p class="card-text">
+                    <p class="card-text note note-info">
                         <?= $data['description']; ?>
                     </p>
                     <p class="card-text">
