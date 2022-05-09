@@ -24,7 +24,8 @@ if ($base) {
     }
     $res = mysqli_query($base, $sql);
 
-    $sql2 = "SELECT COUNT(id_langue)  AS num, id, libelle, drapeau, image FROM personnes 
+    $sql2 = "SELECT COUNT(id_langue) AS num, id, libelle, drapeau, image 
+                FROM personnes 
                 INNER JOIN langues 
                 ON personnes.id_langue = langues.id
                 GROUP BY id_langue";

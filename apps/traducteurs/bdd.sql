@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : mer. 04 mai 2022 à 11:23
+-- Généré le : lun. 09 mai 2022 à 10:03
 -- Version du serveur :  10.4.13-MariaDB
 -- Version de PHP : 7.4.8
 
@@ -69,9 +69,37 @@ CREATE TABLE `personnes` (
 --
 
 INSERT INTO `personnes` (`id_p`, `nom`, `prenom`, `age`, `telephone`, `email`, `image`, `description`, `created`, `id_langue`) VALUES
-(1, 'Dupond', 'Thomas', 25, '06.00.00.00.00', 'dupond@gmail.com', 'thomas.png', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer', '2022-05-03 12:16:13', 3),
-(2, 'Peter', 'Simon', 38, '00 00 00 00 00', 'peter@gmail.uk', 'peter.jpg', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer', '2022-05-03 12:16:13', 2),
-(3, 'toto', 'titi', 25, '0600000000', 'toto@gmail.com', 'eloi.png', 'dfjlvhjedhvilerlhirv pij be rbhe', '2022-05-04 09:20:55', 4);
+(5, 'toto', 'titi', 25, '060000000', 'toto2@gmail.com', 'cathy.jpg', ' it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', '2022-05-04 13:16:58', 3),
+(6, 'Cathy', 'mimi', 24, '0600000000', 'cathy@yahoo.fr', 'simone.jpg', ' it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', '2022-05-04 21:56:09', 2),
+(7, 'Raphael', 'Gregoire', 48, '06.00.00.00.00', 'raphael@gmail.com', 'raphael.png', ' it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', '2022-05-05 21:32:45', 4),
+(8, 'Antony', 'Louis', 25, '00 00 00 00 00', 'louis@gmail.com', 'antony.png', ' it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', '2022-05-05 21:32:45', 1),
+(9, 'Simon', 'Antoine', 45, '0600000000', 'simn@gmail.com', 'simon.png', ' it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', '2022-05-07 14:43:14', 3);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `utilisateurs`
+--
+
+CREATE TABLE `utilisateurs` (
+  `id` int(11) NOT NULL,
+  `nom` varchar(50) NOT NULL,
+  `prenom` varchar(50) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `pass` varchar(100) NOT NULL,
+  `adresse` varchar(100) NOT NULL,
+  `role` smallint(6) NOT NULL DEFAULT 0,
+  `created` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Déchargement des données de la table `utilisateurs`
+--
+
+INSERT INTO `utilisateurs` (`id`, `nom`, `prenom`, `email`, `pass`, `adresse`, `role`, `created`) VALUES
+(1, 'David', 'Roger', 'user@gmail.com', '$2y$10$Eg6ue6jqqFzf0z7dgAALmeqXk.5oArhg.14ZGnwD9bqzgcBdxUS8y', 'Paris', 0, '2022-05-04 22:40:59'),
+(2, 'Dupond', 'Thomas', 'admin@gmail.com', '$2y$10$VxEJCNsiIwWJHaL7fFrGb.FDNPdlxR8AVpTPSXmhbPGngTUinwLKG', 'Créteil', 1, '2022-05-04 22:40:59'),
+(5, 'PEHOUNDE', 'ADIMI', 'adiminico@yahoo.fr', '$2y$10$/c1qMtlLWH2pgjSkWtWBTe3PCNMpWnr73IC4CiLPdyYaasjNwVhma', '70 Rue Bernard Palissy', 1, '2022-05-05 21:14:31');
 
 --
 -- Index pour les tables déchargées
@@ -92,6 +120,13 @@ ALTER TABLE `personnes`
   ADD KEY `fk` (`id_langue`);
 
 --
+-- Index pour la table `utilisateurs`
+--
+ALTER TABLE `utilisateurs`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `email` (`email`);
+
+--
 -- AUTO_INCREMENT pour les tables déchargées
 --
 
@@ -105,7 +140,13 @@ ALTER TABLE `langues`
 -- AUTO_INCREMENT pour la table `personnes`
 --
 ALTER TABLE `personnes`
-  MODIFY `id_p` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_p` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT pour la table `utilisateurs`
+--
+ALTER TABLE `utilisateurs`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Contraintes pour les tables déchargées
