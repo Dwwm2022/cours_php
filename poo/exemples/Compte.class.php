@@ -4,6 +4,10 @@ class Compte{
    private string $numero = "";
    private string $titulaire = "";
    private float $solde = 0.0;
+   const TYPE_1 = "Compte Courant";
+   const TYPE_2 = "Compte d'épargne";
+   private static $plafond  = 1200;
+   private static $nb_obj = 0;
    
     public function __construct($n, $t, $s)
     {
@@ -11,6 +15,7 @@ class Compte{
         $this->numero = $n;
         $this->titulaire = $t;
         $this->solde = $s;
+        self::$nb_obj += 1;
     }
    /**
     * Get the value of numero
@@ -61,7 +66,39 @@ class Compte{
    }
 
    public function depot($montant){
-       
+
        $this->solde = $this->solde + $montant;
+   }
+
+   public function __destruct()
+   {
+       //echo "destruction de l'objet";
+   }
+
+   /**
+    * Get the value of plafond
+    */ 
+   public static function getPlafond()
+   {
+      return self::$plafond;
+   }
+
+   /**
+    * Set the value of plafond
+    *
+    * @return  self
+    */ 
+   public static function setPlafond($plafond)
+   {
+      self::$plafond = $plafond;
+
+   }
+
+   /**
+    * Get the value of nb_obj
+    */ 
+   public static function getNb_obj()
+   {
+      return self::$nb_obj;
    }
 }
