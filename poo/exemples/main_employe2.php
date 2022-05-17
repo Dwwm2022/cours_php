@@ -2,25 +2,55 @@
 
 require_once('Adresse.class.php');
 require_once('Employe2.class.php');
-
+//Creation des objets
 $adresse1 = new Adresse();
+$adresse2 = new Adresse();
+$adresse3 = new Adresse();
+
 $empl1 = new Employe2();
+$empl2 = new Employe2();
+$empl3 = new Employe2();
+
+$tab_employes = [];
 
 $adresse1->setNumero(05)
          ->setRue("Henry")
          ->setCode_postal(78000)
          ->setVille("St-Cloud");
-
 $empl1->setNom("Dupond")
          ->setPrenom("Thomas")
          ->setPoste("Developpeur web")
          ->setIsCadre(true)
          ->setAdresse($adresse1)
-         ->setSecret(md5($empl1->getNom()));         
-echo "<pre>";
-var_dump($empl1);
-echo "</pre>";
-exit;
+         ->setSecret(md5($empl1->getNom()));  
+         
+$adresse2->setNumero(10)
+         ->setRue("Caenot")
+         ->setCode_postal(93000)
+         ->setVille("St-Denis");
+$empl2->setNom("Peter")
+         ->setPrenom("Rufy")
+         ->setPoste("Architecte Réseu")
+         ->setIsCadre(true)
+         ->setAdresse($adresse2)
+         ->setSecret(md5($empl2->getNom()));
+
+$adresse3->setNumero(22)
+         ->setRue("De la République")
+         ->setCode_postal(75000)
+         ->setVille("Paris");
+
+$empl3->setNom("Etienne")
+         ->setPrenom("Edouard")
+         ->setPoste("Imprimeur")
+         ->setIsCadre(false)
+         ->setAdresse($adresse3)
+         ->setSecret(md5($empl3->getNom()));
+array_push($tab_employes, $empl1, $empl2, $empl3);
+// echo "<pre>";
+// var_dump($tab_employes);
+// echo "</pre>";
+// exit;
 
 ?>
 <!DOCTYPE html>
@@ -52,7 +82,12 @@ exit;
                                         <td><?= $empl->getPrenom(); ?></td>
                                         <td><?= $empl->getPoste(); ?></td>
                                         <td><?= ($empl->getIsCadre()) ? "Cadre" : "Employé"; ?></td>
-                                        <td><?= $empl->getAdresse(); ?></td>
+                                        <td>
+                                                <?= $empl->getAdresse()->getNumero();?>
+                                                <?= $empl->getAdresse()->getRue();?>
+                                                <?= $empl->getAdresse()->getCode_postal();?>
+                                                <?= $empl->getAdresse()->getVille();?>
+                                        </td>
                                 </tr>
                         <?php } ?>
                 </table>

@@ -1,11 +1,11 @@
 <?php
 class Employe2{
-    private string $nom;
-    private string $prenom;
-    private string $poste;
-    private bool $isCadre;
+    private string $nom = "";
+    private string $prenom = "";
+    private string $poste = "";
+    private bool $isCadre = false;
     private Adresse $adresse;
-    private string $secret;
+    private string $secret = "";
 
 
     /**
