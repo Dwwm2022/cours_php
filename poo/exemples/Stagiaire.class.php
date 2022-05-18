@@ -5,7 +5,8 @@ class Stagiaire extends Personne{
     private int $duree = 0;
     private bool $remuneration = false;
 
-    public function __construct($d, $r){
+    public function __construct($i,$n,$p,$a,$d, $r){
+        parent::__construct($i,$n,$p,$a)
         $this->duree = $d;
         $this->remuneration = $r;
     }
@@ -57,6 +58,9 @@ class Stagiaire extends Personne{
 
     public function etudier(){
         return "J' étudie pour réussir la formation";
+    }
+    public function affichage(){
+        return parent::affichage()." Durée: ".$this->duree." mois Rémunération: ".($this->remuneration ?'Rémunéré':'Non Rémunéré');
     }
 
 }
