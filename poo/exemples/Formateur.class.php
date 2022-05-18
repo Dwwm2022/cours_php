@@ -29,7 +29,7 @@ class Formateur extends Personne{
         return $this;
     }
 
-    public function Former(){
-        return "Il forme ses stagiaires";
+    public function former(Personne $pers){
+        echo "Je suis le formateur qui forme: ".$pers->nom;
     }
 }
