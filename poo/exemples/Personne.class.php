@@ -98,7 +98,7 @@ class Personne{
         echo "Je suis la personne qui forme: ".$pers->nom;
     }
 
-    public function affichage(){
+   final public function affichage(){
         return "Identifiant: ".$this->identifiant." Nom: ".$this->nom." Prénom: ".$this->prenom." Adresse ".$this->adresse."<br/>";
     }
 }

@@ -1,5 +1,5 @@
 <?php
-
+namespace identite;
 class Adresse{
     private int $numero = 0;
     private string $rue = "";
