@@ -17,15 +17,15 @@
     <i class="fa fa-caret-down"></i>
   </button>
   <div class="dropdown-container">
-    <a href="#">Ajouter</a>
-    <a href="#">Lister</a>
+    <a href="index.php?action=add_cat">Ajout</a>
+    <a href="index.php?action=list_cat">Liste</a>
   </div>
   <button class="dropdown-btn">Véhicule
     <i class="fa fa-caret-down"></i>
   </button>
   <div class="dropdown-container">
-    <a href="#">Ajouter</a>
-    <a href="#">Lister</a>
+    <a href="#">Ajout</a>
+    <a href="#">Liste</a>
   </div>
   <a href="#contact">Search</a>
 </div>

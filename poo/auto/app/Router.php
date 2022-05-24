@@ -18,6 +18,9 @@ class Router{
                case 'list_cat':
                 $this->acatCtr -> listCategories();
                 break;
+               case 'add_cat':
+                $this->acatCtr->addCategory();
+                break;
            }
        } 
     }

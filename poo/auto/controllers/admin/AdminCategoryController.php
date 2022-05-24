@@ -16,6 +16,11 @@ class AdminCategoryController{
         $categories = $this->acmodel->getCategories();
         require_once(dirname(dirname(__DIR__)).'/views/admin/categories/listView.php');
     }
+
+    public function addCategory(){
+        
+        require_once(dirname(dirname(__DIR__)).'/views/admin/categories/addView.php');
+    }
 }
 
 // $acatCtr = new AdminCategoryController();
