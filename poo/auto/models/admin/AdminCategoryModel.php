@@ -14,6 +14,7 @@ class AdminCategoryModel extends Driver{
             $cat = new Category();
             $cat->setId_cat($row->id_cat);
             $cat->setNom_cat($row->nom_cat);
+            $cat->date_created = $row->date_created_cat;
 
             array_push($tabCat,$cat);
         }
