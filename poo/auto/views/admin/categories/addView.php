@@ -9,7 +9,7 @@
                         <input placeholder="Entrez la catégorie" class="form-control" type="text" name="cat" id="cat">
                     </div>
                     <div class="mt-2">
-                        <button class="btn btn-primary col-12" type="submit">Envoyer</button>
+                        <button name="soumis" class="btn btn-primary col-12" type="submit">Envoyer</button>
                     </div>
                 </form>
             </div>

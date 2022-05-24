@@ -18,7 +18,16 @@ class AdminCategoryController{
     }
 
     public function addCategory(){
-        
+        if(isset($_POST['soumis']) && !empty($_POST['cat'])){
+            $nom_cat = trim(addslashes(htmlentities($_POST['cat'])));
+            $newCat = new Category();
+            $newCat->setNom_cat($nom_cat);
+            $ok = $this->acmodel->insertCategory($newCat);
+            if($ok){
+                header('location:index.php?action=list_cat');
+            }
+
+        }
         require_once(dirname(dirname(__DIR__)).'/views/admin/categories/addView.php');
     }
 }

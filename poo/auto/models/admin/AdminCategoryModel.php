@@ -20,4 +20,10 @@ class AdminCategoryModel extends Driver{
         }
         return $tabCat;
     }
+
+    public function insertCategory(Category $cat){
+        $sql = "INSERT INTO category (nom_cat) Values(:nom)";
+        $res = $this->getRequest($sql, ['nom'=>$cat->getNom_cat()]);
+        return $res;
+    }
 }
