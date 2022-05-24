@@ -1,8 +1,8 @@
 <?php
 //die(dirname(dirname(__DIR__)).'/models/admin/AdminCategoryModel.php');
-require_once(dirname(dirname(__DIR__)).'/models/Category.php');
-require_once(dirname(dirname(__DIR__)).'/models/Driver.php');
-require_once(dirname(dirname(__DIR__)).'/models/admin/AdminCategoryModel.php');
+// require_once(dirname(dirname(__DIR__)).'/models/Category.php');
+// require_once(dirname(dirname(__DIR__)).'/models/Driver.php');
+// require_once(dirname(dirname(__DIR__)).'/models/admin/AdminCategoryModel.php');
 class AdminCategoryController{
 
     private $acmodel;
@@ -18,6 +18,6 @@ class AdminCategoryController{
     }
 }
 
-$acatCtr = new AdminCategoryController();
-$acatCtr->listCategories();
+// $acatCtr = new AdminCategoryController();
+// $acatCtr->listCategories();
 
