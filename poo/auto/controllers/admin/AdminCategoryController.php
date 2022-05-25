@@ -30,8 +30,32 @@ class AdminCategoryController{
         }
         require_once(dirname(dirname(__DIR__)).'/views/admin/categories/addView.php');
     }
+
+    public function removeCat(){
+        if(isset($_GET['id']) && filter_var($_GET['id'], FILTER_VALIDATE_INT) ){
+            $id = trim(htmlentities(addslashes($_GET['id'])));
+            $delete_cat = new Category();
+            $delete_cat->setId_cat($id);
+            $num = $this->acmodel->deleteCategory($delete_cat);
+            if($num == 1){
+                header('location:index.php?action=list_cat');
+            }
+        }
+    }
+    public function editCategory(){
+        if(isset($_GET['id']) && filter_var($_GET['id'], FILTER_VALIDATE_INT) ){
+
+            $id = trim(htmlentities(addslashes($_GET['id'])));
+            $edit_cat = new Category();
+            $edit_cat->setId_cat($id);
+            $cat = $this->acmodel->categoryItem($edit_cat);
+
+            require_once(dirname(dirname(__DIR__)).'/views/admin/categories/editcView.php');
+        }
+    }
 }
 
-// $acatCtr = new AdminCategoryController();
-// $acatCtr->listCategories();
+//  $acatCtr = new AdminCategoryController();
+//  $acatCtr->editCategory();
+//  var_dump($cat);
 

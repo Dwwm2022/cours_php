@@ -21,6 +21,12 @@ class Router{
                case 'add_cat':
                 $this->acatCtr->addCategory();
                 break;
+               case 'delete_cat':
+                $this->acatCtr->removeCat();
+                break;
+               case 'edit_cat':
+                $this->acatCtr->editCategory();
+                break;
            }
        } 
     }
