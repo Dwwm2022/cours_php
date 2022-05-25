@@ -48,6 +48,15 @@ class AdminCategoryController{
             $id = trim(htmlentities(addslashes($_GET['id'])));
             $edit_cat = new Category();
             $edit_cat->setId_cat($id);
+
+            if(isset($_POST['soumis']) && !empty($_POST['cat'])){
+                $nomcat = trim(htmlentities(addslashes($_POST['cat'])));
+                $edit_cat->setNom_cat($nomcat);
+                $ok = $this->acmodel->updateCategory($edit_cat);
+                if($ok->rowCount() > 0){
+                    header('location:index.php?action=list_cat');
+                }
+            }
             $cat = $this->acmodel->categoryItem($edit_cat);
 
             require_once(dirname(dirname(__DIR__)).'/views/admin/categories/editcView.php');

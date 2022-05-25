@@ -48,9 +48,10 @@ class AdminCategoryModel extends Driver{
             return $cat_edit;
         }
     }
+
+    public function updateCategory(Category $cat){
+        $sql = "UPDATE category SET nom_cat = :nom WHERE id_cat = :id";
+        $res = $this->getRequest($sql, ['nom'=>$cat->getNom_cat(), 'id'=>$cat->getId_cat()]);
+        return $res;
+    }
 }
-// $testCat = new Category();
-// $testCat->setId_cat(3);
-// $acmodel = new AdminCategoryModel();
-// $result = $acmodel->categoryItem($testCat);
-// var_dump($result);

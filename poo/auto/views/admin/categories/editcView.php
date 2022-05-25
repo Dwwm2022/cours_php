@@ -5,11 +5,15 @@
             <div class="card-body">
                 <form action="<?php $_SERVER['PHP_SELF']; ?>" method="post">
                     <div class="form-group">
+                        <label for="id">Id</label>
+                        <input value="<?= $cat->getId_cat(); ?>" class="form-control" type="text" name="id" id="id_cat" readonly>
+                    </div>
+                    <div class="form-group">
                         <label for="cat">Catégorie</label>
-                        <input value="<?= $cat->getNom_cat();?>" class="form-control" type="text" name="cat" id="cat">
+                        <input value="<?= $cat->getNom_cat(); ?>" class="form-control" type="text" name="cat" id="cat">
                     </div>
                     <div class="mt-2">
-                        <button name="soumis" class="btn btn-primary col-12" type="submit">Envoyer</button>
+                        <button name="soumis" class="btn btn-warning col-12" type="submit">Modifier</button>
                     </div>
                 </form>
             </div>
@@ -20,4 +24,4 @@
 <?php
 $title = "Edition d'une catégorie";
 $content = ob_get_clean();
-require_once(dirname(__DIR__).'/template_back.php');
+require_once(dirname(__DIR__) . '/template_back.php');
