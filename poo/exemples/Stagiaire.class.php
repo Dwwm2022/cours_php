@@ -5,8 +5,8 @@ class Stagiaire extends Personne{
     private int $duree = 0;
     private bool $remuneration = false;
 
-    public function __construct($i,$n,$p,$a,$d, $r){
-        parent::__construct($i,$n,$p,$a)
+    public function __construct($d, $r){
+        //parent::__construct($i,$n,$p,$a);
         $this->duree = $d;
         $this->remuneration = $r;
     }

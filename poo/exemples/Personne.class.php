@@ -94,11 +94,19 @@ class Personne{
         return $this;
     }
 
+<<<<<<< HEAD
     public function former( Personne $pers){
         var_dump($pers);
     }
 
     public function affichage(){
+=======
+    public function former(Personne $pers){
+        echo "Je suis la personne qui forme: ".$pers->nom;
+    }
+
+   final public function affichage(){
+>>>>>>> 80a66aa75681e26016b2ea40c3d0b96887fc1dbb
         return "Identifiant: ".$this->identifiant." Nom: ".$this->nom." Prénom: ".$this->prenom." Adresse ".$this->adresse."<br/>";
     }
 }

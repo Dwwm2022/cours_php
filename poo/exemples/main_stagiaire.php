@@ -1,6 +1,6 @@
 <?php
-require_once('Personne.class.php');
-require_once('Stagiaire.class.php');
+require_once('Personne.class.php');//classe mère 
+require_once('Stagiaire.class.php');//classe fille
 $stag1 = new Stagiaire(6, true);
 $stag1->setIdentifiant("001")
       ->setNom("Dupond")
