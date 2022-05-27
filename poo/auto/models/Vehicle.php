@@ -12,7 +12,7 @@ class Vehicle{
     private float $price = 0.0;
     private int $quantity = 0;
     private string $date_created_v = "";
-    private ? Category $category;
+    private ? Category $category = null;
 
     /**
      * Get the value of id_v
@@ -226,6 +226,30 @@ class Vehicle{
     public function setImage($image)
     {
         $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * Set the value of id_v
+     *
+     * @return  self
+     */ 
+    public function setId_v($id_v)
+    {
+        $this->id_v = $id_v;
+
+        return $this;
+    }
+
+    /**
+     * Set the value of date_created_v
+     *
+     * @return  self
+     */ 
+    public function setDate_created_v($date_created_v)
+    {
+        $this->date_created_v = $date_created_v;
 
         return $this;
     }

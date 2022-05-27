@@ -1,36 +1,44 @@
 <?php ob_start();  ?>
-<!-- <table class="table table-striped text-center">
+<table class="table table-striped text-center">
     <thead>
         <tr>
             <th>Id</th>
-            <th>Catégorie</th>
+            <th>Marque</th>
+            <th>Modèle</th>
+            <th>Pays</th>
+            <th>Année</th>
+            <th>Image</th>
+            <th>Description</th>
+            <th>Prix</th>
+            <th>Disponibilité</th>
+            <th>Quantité</th>
+            <th>Catégory</th>
             <th>Créé le</th>
             <th>Actions</th>
         </tr>
     </thead>
     <tbody>
-        <?php foreach($categories as $category): ?> 
+        <?php foreach($vehicles as $vehicle): ?> 
         <tr>
-            <td><?=$category->getId_cat();?></td>
-            <td><?=ucfirst($category->getNom_cat());?></td>
-            <td><?=date('d-m-Y', strtotime($category->date_created)); ?></td>
-            <td>
-                <a class="btn btn-success" 
-                href="index.php?action=edit_cat&id=<?=$category->getId_cat();?>"
-                /> <i class="fa fa-edit"></i> Editer</a>
-                <!-- Supprimer -->
-                <a 
-                class="btn btn-danger" 
-                href="index.php?action=delete_cat&id=<?=$category->getId_cat();?>"
-                onclick="return confirm('Etes-vous sûr de supprimer ...')"
-                /> <i class="fa fa-trash"></i> Supprimer</a>
-            </td>
+            <td><?=$vehicle->getId_v();?></td>
+            <td><?=$vehicle->getMarque();?></td>
+            <td><?=$vehicle->getModele();?></td>
+            <td><?=$vehicle->getCountry();?></td>
+            <td><?=$vehicle->getYear();?></td>
+            <td><?=$vehicle->getImage();?></td>
+            <td><?=$vehicle->getDescription();?></td>
+            <td><?=$vehicle->getPrice();?></td>
+            <td><?php echo ($vehicle->getAvailable() ? 'Disponible': 'Indisponible') ?></td>
+            <td><?=$vehicle->getQuantity();?></td>
+            <td><?=$vehicle->getCategory()->getId_cat();?></td>
+            <td><?=$vehicle->getDate_created_v();?></td>
+
         </tr>
         <?php endforeach ?>
     </tbody>
-</table> -->
+</table> 
 <?php
-$title = "Liste des véhicules";
+$title = "Liste des véhicles";
 $content = ob_get_clean();
 require_once(dirname(dirname(__DIR__)).'/admin/template_back.php');
 ?>

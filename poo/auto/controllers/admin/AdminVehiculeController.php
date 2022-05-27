@@ -8,6 +8,7 @@ class AdminVehiculeController{
     }
 
     public function listVehicles(){
+        $vehicles = $this->avmodel->getVehicles();
         require_once(dirname(dirname(__DIR__)).'/views/admin/vehicles/listView.php');
     }
 }
