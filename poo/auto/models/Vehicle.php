@@ -6,10 +6,12 @@ class Vehicle{
     private string $modele = "";
     private string $country = "";
     private int $year = 0;
+    private string $image = "";
     private string $description = "";
     private bool $available = false;
     private float $price = 0.0;
     private int $quantity = 0;
+    private string $date_created_v = "";
     private ? Category $category;
 
     /**
@@ -196,6 +198,34 @@ class Vehicle{
     public function setCategory($category)
     {
         $this->category = $category;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of date_created_v
+     */ 
+    public function getDate_created_v()
+    {
+        return $this->date_created_v;
+    }
+
+    /**
+     * Get the value of image
+     */ 
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    /**
+     * Set the value of image
+     *
+     * @return  self
+     */ 
+    public function setImage($image)
+    {
+        $this->image = $image;
 
         return $this;
     }

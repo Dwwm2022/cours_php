@@ -19,7 +19,8 @@ class Person2 implements JsonSerializable
         ];
     }
 }
+header('Access-Control-Allow-Origin: *');
 header('Content-type:application/json');
 // serialize object to json
 $alice = new Person2('Alice', 20);
-echo json_encode($alice);
+echo json_encode($alice, JSON_PRETTY_PRINT);
