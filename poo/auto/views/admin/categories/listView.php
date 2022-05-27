@@ -13,7 +13,7 @@
         <tr>
             <td><?=$category->getId_cat();?></td>
             <td><?=ucfirst($category->getNom_cat());?></td>
-            <td><?=$category->date_created; ?></td>
+            <td><?=date('d-m-Y', strtotime($category->date_created)); ?></td>
             <td>
                 <a class="btn btn-success" 
                 href="index.php?action=edit_cat&id=<?=$category->getId_cat();?>"

@@ -62,6 +62,11 @@ class AdminCategoryController{
             require_once(dirname(dirname(__DIR__)).'/views/admin/categories/editcView.php');
         }
     }
+
+    public function listData(){
+        $data = $this->acmodel->getData();
+        require_once(dirname(dirname(__DIR__)).'/views/admin/dashbaordView.php');
+    }
 }
 
 //  $acatCtr = new AdminCategoryController();

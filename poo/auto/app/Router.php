@@ -15,6 +15,9 @@ class Router{
     public function getPath(){
        if(isset($_GET['action'])){
            switch($_GET['action']){
+               case 'admin':
+                $this->acatCtr->listData();
+                break;
                case 'list_cat':
                 $this->acatCtr -> listCategories();
                 break;

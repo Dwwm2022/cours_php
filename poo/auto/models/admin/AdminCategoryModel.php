@@ -54,4 +54,12 @@ class AdminCategoryModel extends Driver{
         $res = $this->getRequest($sql, ['nom'=>$cat->getNom_cat(), 'id'=>$cat->getId_cat()]);
         return $res;
     }
+
+    public function getData(){
+        $sql = "SELECT * FROM category";
+        $res = $this->getRequest($sql);
+        if($res->rowCount() > 0){
+            return ['admin'=>$res->rowCount()];
+        }
+    }
 }
