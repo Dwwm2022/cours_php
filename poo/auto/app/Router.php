@@ -38,6 +38,9 @@ class Router{
                case 'list_veh':
                 $this->avehCtr->listVehicles();
                 break;
+               case 'delete_veh':
+                $this->avehCtr->removeVeh();
+                break;
 
            }
        } 

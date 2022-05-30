@@ -12,9 +12,9 @@
             <th>Prix</th>
             <th>Disponibilité</th>
             <th>Quantité</th>
-            <th>Catégory</th>
+            <th>Catégorie</th>
             <th>Créé le</th>
-            <th>Actions</th>
+            <th colspan="2">Actions</th>
         </tr>
     </thead>
     <tbody>
@@ -24,15 +24,27 @@
             <td><?= ucfirst($vehicle->getMarque());?></td>
             <td><?= ucfirst($vehicle->getModele());?></td>
             <td><?= ucfirst($vehicle->getCountry());?></td>
-            <td><img src="./assets/images/<?= $vehicle->getYear();?>"/></td>
-            <td><?= $vehicle->getImage();?></td>
+            <td><?= $vehicle->getYear();?></td>
+            <td><img src="./assets/images/<?= $vehicle->getImage();?>" alt="" width="100"/></td>
             <td><?= ucfirst(substr($vehicle->getDescription(), 0, 30)) . ' ...'; ?></td>
-            <td><?= $vehicle->getPrice();?></td>
-            <td><?= $vehicle->getAvailable() ? '<h1>Disponible</h1>': 'Indisponible' ?></td>
+            <td><?= $vehicle->getPrice();?>€</td>
+            <td><?= $vehicle->getAvailable() ? '<i class="text-success fa fa-check"></i>': '<i class="text-danger fa fa-times" aria-hidden="true"></i>' ?></td>
             <td><?= $vehicle->getQuantity();?></td>
-            <td><?= $vehicle->getCategory()->getId_cat();?></td>
-            <td><?= $vehicle->getDate_created_v();?></td>
-
+            <td><?= ucfirst($vehicle->getCategory()->getNom_cat());?></td>
+            <td><?= date('d-m-Y',strtotime($vehicle->getDate_created_v()));?></td>
+            <td>
+                <a class="btn btn-success" 
+                href="index.php?action=edit_cat&id="
+                /> <i class="fa fa-edit"></i> Editer</a>
+                <!-- Supprimer -->
+            </td>
+            <td>
+                <a 
+                class="btn btn-danger" 
+                href="index.php?action=delete_veh&id=<?= $vehicle->getId_v();?>"
+                onclick="return confirm('Etes-vous sûr de supprimer ...')"
+                /> <i class="fa fa-trash"></i> Supprimer</a>
+            </td>
         </tr>
         <?php endforeach ?>
     </tbody>

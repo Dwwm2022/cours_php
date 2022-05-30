@@ -3,7 +3,9 @@
 class AdminVehicleModel extends Driver{
 
     public function getVehicles(){
-        $sql = "SELECT * FROM vehicle";
+        $sql = "SELECT * FROM vehicle INNER JOIN category
+        ON vehicle.category_id = category.id_cat
+        ORDER BY id_v DESC";
         $res = $this->getRequest($sql);
         $lines = $res->fetchAll(PDO::FETCH_OBJ);
 
@@ -13,6 +15,7 @@ class AdminVehicleModel extends Driver{
             $cat = new Category();
             $veh = new Vehicle();
             $cat->setId_cat($line->category_id);
+            $cat->setNom_cat($line->nom_cat);
             $veh->setId_v($line->id_v)
                 ->setMarque($line->marque)
                 ->setModele($line->modele)
@@ -30,5 +33,14 @@ class AdminVehicleModel extends Driver{
         }
         return $tabVeh;
     }
+
+    public function deleteVehicle(Vehicle $veh){
+
+        $sql = "DELETE FROM vehicle WHERE id_v = :id";
+        $res = $this->getRequest($sql, ['id'=>$veh->getId_v()]);
+        $nb = $res->rowCount();
+        return $nb;
+    }
+
 
 }
