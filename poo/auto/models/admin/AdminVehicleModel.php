@@ -2,11 +2,20 @@
 
 class AdminVehicleModel extends Driver{
 
-    public function getVehicles(){
-        $sql = "SELECT * FROM vehicle INNER JOIN category
-        ON vehicle.category_id = category.id_cat
-        ORDER BY id_v DESC";
-        $res = $this->getRequest($sql);
+    public function getVehicles($search = null){
+        if(!empty($search)){
+            $sql = "SELECT * FROM vehicle INNER JOIN category
+            ON vehicle.category_id = category.id_cat
+            WHERE marque LIKE :marque OR modele LIKE :modele OR nom_cat LIKE :nom_cat
+            ORDER BY id_v DESC";
+            $searchParams = ["marque"=>"$search%", "modele"=>"$search%", "nom_cat"=>"$search%"];
+            $res = $this->getRequest($sql,$searchParams);
+        }else{
+            $sql = "SELECT * FROM vehicle INNER JOIN category
+            ON vehicle.category_id = category.id_cat
+            ORDER BY id_v DESC";
+            $res = $this->getRequest($sql);
+        }
         $lines = $res->fetchAll(PDO::FETCH_OBJ);
 
         $tabVeh = [];

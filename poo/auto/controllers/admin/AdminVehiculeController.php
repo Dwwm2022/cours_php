@@ -8,7 +8,12 @@ class AdminVehiculeController{
     }
 
     public function listVehicles(){
-        $vehicles = $this->avmodel->getVehicles();
+        if(isset($_POST['soumis']) && !empty($_POST['search'])){
+            $search = trim(addslashes(htmlentities($_POST['search'])));
+            $vehicles = $this->avmodel->getVehicles($search);
+        }else{
+            $vehicles = $this->avmodel->getVehicles();
+        }
         require_once(dirname(dirname(__DIR__)).'/views/admin/vehicles/listView.php');
     }
 

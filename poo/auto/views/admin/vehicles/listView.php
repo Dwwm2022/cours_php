@@ -1,4 +1,18 @@
 <?php ob_start();  ?>
+<div class="row">
+    <div class="offset-6 col-6">
+        <form action="<?php $_SERVER['PHP_SELF'];?>" method="post">
+        <div class="row">
+            <div class="col-8">
+                <input type="search" name="search" id="search" placeholder="Rechercher..." class="form-control text-center col-2">
+            </div>
+            <div class="col-2">
+                <button class="btn btn-outline-secondary" type="submit" name="soumis">Rechercher</button>
+            </div>
+        </div>
+        </form>
+    </div>
+</div>
 <table class="table table-striped text-center">
     <thead>
         <tr>
