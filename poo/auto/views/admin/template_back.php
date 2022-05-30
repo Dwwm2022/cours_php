@@ -20,12 +20,12 @@
     <a href="index.php?action=add_cat">Ajout</a>
     <a href="index.php?action=list_cat">Liste</a>
   </div>
-  <button class="dropdown-btn">Véhicule
+  <button class="dropdown-btn">Véhicules
     <i class="fa fa-caret-down"></i>
   </button>
   <div class="dropdown-container">
-    <a href="#">Ajout</a>
-    <a href="#">Liste</a>
+    <a href="index.php?action=add_veh">Ajout</a>
+    <a href="index.php?action=list_veh">Liste</a>
   </div>
   <a href="#contact">Search</a>
 </div>

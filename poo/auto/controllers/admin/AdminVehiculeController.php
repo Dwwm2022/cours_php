@@ -5,6 +5,7 @@ class AdminVehiculeController{
     public function __construct()
     {
         $this->avmodel = new AdminVehicleModel();
+        $this->acmodel = new AdminCategoryModel();
     }
 
     public function listVehicles(){
@@ -28,4 +29,44 @@ class AdminVehiculeController{
             }
         }
     }
+    public function addVehicle(){
+        if(isset($_POST['soumis']) && !empty($_POST['marque']) && !empty($_POST['price'])){
+            $marque = trim(addslashes(htmlspecialchars($_POST['marque'])));
+            $modele = trim(addslashes(htmlspecialchars($_POST['modele'])));
+            $country = trim(addslashes(htmlspecialchars($_POST['country'])));
+            $price = trim(addslashes(htmlspecialchars($_POST['price'])));
+            $quantity = trim(addslashes(htmlspecialchars($_POST['quantity'])));
+            $year = trim(addslashes(htmlspecialchars($_POST['year'])));
+            $cat = trim(addslashes(htmlspecialchars($_POST['cat'])));
+            $description = trim(addslashes(htmlspecialchars($_POST['description'])));
+            $image = $_FILES['image']['name'];
+
+            $destination = './assets/images/';
+            move_uploaded_file($_FILES['image']['tmp_name'], $destination.$image);
+
+            $newVeh = new Vehicle();
+            $newCat = new Category();
+            $newCat->setId_cat($cat);
+            $newVeh->setMarque($marque)
+                   ->setModele($modele)
+                   ->setCountry($country) 
+                   ->setYear($year)
+                   ->setPrice($price)
+                   ->setQuantity($quantity)
+                   ->setDescription($description)
+                   ->setImage($image)
+                   ->setCategory($newCat);
+            
+            $ok = $this->avmodel->insertVehicle($newVeh);
+            if($ok){
+                header('location:index.php?action=list_veh');
+            }
+
+        }
+        $categories = $this->acmodel->getCategories();
+        require_once(dirname(dirname(__DIR__)).'/views/admin/vehicles/addView.php');
+    }
 }
+
+$adminCtr = new AdminVehiculeController();
+$adminCtr->addVehicle();
