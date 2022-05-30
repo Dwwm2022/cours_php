@@ -20,25 +20,25 @@
     <tbody>
         <?php foreach($vehicles as $vehicle): ?> 
         <tr>
-            <td><?=$vehicle->getId_v();?></td>
-            <td><?=$vehicle->getMarque();?></td>
-            <td><?=$vehicle->getModele();?></td>
-            <td><?=$vehicle->getCountry();?></td>
-            <td><?=$vehicle->getYear();?></td>
-            <td><?=$vehicle->getImage();?></td>
-            <td><?=$vehicle->getDescription();?></td>
-            <td><?=$vehicle->getPrice();?></td>
-            <td><?php echo ($vehicle->getAvailable() ? 'Disponible': 'Indisponible') ?></td>
-            <td><?=$vehicle->getQuantity();?></td>
-            <td><?=$vehicle->getCategory()->getId_cat();?></td>
-            <td><?=$vehicle->getDate_created_v();?></td>
+            <td><?= $vehicle->getId_v();?></td>
+            <td><?= ucfirst($vehicle->getMarque());?></td>
+            <td><?= ucfirst($vehicle->getModele());?></td>
+            <td><?= ucfirst($vehicle->getCountry());?></td>
+            <td><img src="./assets/images/<?= $vehicle->getYear();?>"/></td>
+            <td><?= $vehicle->getImage();?></td>
+            <td><?= ucfirst(substr($vehicle->getDescription(), 0, 30)) . ' ...'; ?></td>
+            <td><?= $vehicle->getPrice();?></td>
+            <td><?= $vehicle->getAvailable() ? '<h1>Disponible</h1>': 'Indisponible' ?></td>
+            <td><?= $vehicle->getQuantity();?></td>
+            <td><?= $vehicle->getCategory()->getId_cat();?></td>
+            <td><?= $vehicle->getDate_created_v();?></td>
 
         </tr>
         <?php endforeach ?>
     </tbody>
 </table> 
 <?php
-$title = "Liste des véhicles";
+$title = "Liste des véhicules";
 $content = ob_get_clean();
 require_once(dirname(dirname(__DIR__)).'/admin/template_back.php');
 ?>
