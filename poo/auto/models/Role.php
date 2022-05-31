@@ -2,8 +2,8 @@
 
 class Role{
     private int $id_r = 0;
-    private string $name_u = "";
-    private string $date_created_u = "";
+    private string $name_r = "";
+    private string $date_created_r = "";
 
     /**
      * Get the value of id_r
@@ -25,42 +25,44 @@ class Role{
         return $this;
     }
 
+    
+
     /**
-     * Get the value of name_u
+     * Get the value of name_r
      */ 
-    public function getName_u()
+    public function getName_r()
     {
-        return $this->name_u;
+        return $this->name_r;
     }
 
     /**
-     * Set the value of name_u
+     * Set the value of name_r
      *
      * @return  self
      */ 
-    public function setName_u($name_u)
+    public function setName_r($name_r)
     {
-        $this->name_u = $name_u;
+        $this->name_r = $name_r;
 
         return $this;
     }
 
     /**
-     * Get the value of date_created_u
+     * Get the value of date_created_r
      */ 
-    public function getDate_created_u()
+    public function getDate_created_r()
     {
-        return $this->date_created_u;
+        return $this->date_created_r;
     }
 
     /**
-     * Set the value of date_created_u
+     * Set the value of date_created_r
      *
      * @return  self
      */ 
-    public function setDate_created_u($date_created_u)
+    public function setDate_created_r($date_created_r)
     {
-        $this->date_created_u = $date_created_u;
+        $this->date_created_r = $date_created_r;
 
         return $this;
     }

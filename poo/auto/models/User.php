@@ -7,6 +7,7 @@ class User{
     private string $email = "";
     private string $pass = "";
     private bool $status = false;
+    private string $date_created_u = "";
     private ? Role $role = null;
 
     public function __construct()
@@ -150,6 +151,26 @@ class User{
     public function setRole($role)
     {
         $this->role = $role;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of date_created_u
+     */ 
+    public function getDate_created_u()
+    {
+        return $this->date_created_u;
+    }
+
+    /**
+     * Set the value of date_created_u
+     *
+     * @return  self
+     */ 
+    public function setDate_created_u($date_created_u)
+    {
+        $this->date_created_u = $date_created_u;
 
         return $this;
     }
