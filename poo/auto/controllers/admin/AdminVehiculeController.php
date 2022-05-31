@@ -111,5 +111,7 @@ class AdminVehiculeController{
             require_once(dirname(dirname(__DIR__)).'/views/admin/vehicles/editView.php');
         }
     }
+
+  
 }
 

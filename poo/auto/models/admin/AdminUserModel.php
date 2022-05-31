@@ -26,4 +26,18 @@ class AdminUserModel extends Driver
 
         return $tabUsers;
     }
+
+    public function insertUser(User $user){
+        $sql = "INSERT INTO user (lastname, firstname, email, pass, role_id) 
+                Values(:lastname, :firstname, :email, :pass, :role_id)";
+        $userParams = [
+                        'lastname'=>$user->getLastname(), 
+                        'firstname'=>$user->getFirstname(),
+                        'email'=>$user->getEmail(),
+                        'pass'=>$user->getPass(),
+                        'role_id'=>$user->getRole()->getId_r()
+        ];
+        $res = $this->getRequest($sql,  $userParams);
+        return $res;
+    }
 }

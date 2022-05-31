@@ -67,8 +67,9 @@ class Router{
                case 'list_u':
                 $this->auCtr->listUsers();
                 break;
-
-
+               case 'add_u':
+                $this->auCtr->addUser();
+                break;
            }
        } 
     }
