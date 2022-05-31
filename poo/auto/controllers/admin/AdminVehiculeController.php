@@ -67,5 +67,17 @@ class AdminVehiculeController{
         $categories = $this->acmodel->getCategories();
         require_once(dirname(dirname(__DIR__)).'/views/admin/vehicles/addView.php');
     }
+
+    public function editVehicle(){
+        if(isset($_GET['id']) && filter_var($_GET['id'], FILTER_VALIDATE_INT) ){
+            $id = trim(htmlentities(addslashes($_GET['id'])));
+            $item_veh = new Vehicle();
+            $item_veh->setId_v($id);
+            $vehObj = $this->avmodel->editVehicle($item_veh);
+            
+            $categories = $this->acmodel->getCategories();
+            require_once(dirname(dirname(__DIR__)).'/views/admin/vehicles/editView.php');
+        }
+    }
 }
 

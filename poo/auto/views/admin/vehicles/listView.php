@@ -48,7 +48,7 @@
             <td><?= date('d-m-Y',strtotime($vehicle->getDate_created_v()));?></td>
             <td>
                 <a class="btn btn-success" 
-                href="index.php?action=edit_cat&id="
+                href="index.php?action=edit_veh&id=<?= $vehicle->getId_v();?>"
                 /> <i class="fa fa-edit"></i> Editer</a>
                 <!-- Supprimer -->
             </td>

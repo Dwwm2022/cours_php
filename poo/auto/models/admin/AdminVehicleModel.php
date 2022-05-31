@@ -68,5 +68,31 @@ class AdminVehicleModel extends Driver{
         return $res;
     }
 
+    public function editVehicle(Vehicle $veh){
+        $sql = "SELECT * FROM vehicle WHERE id_v = :id";
+        $res = $this->getRequest($sql, ['id'=>$veh->getId_v()]);
+
+        if($res->rowCount() > 0){
+            $vehicleRow = $res->fetch(PDO::FETCH_OBJ);
+            $edit_v = new Vehicle();
+            //ORM
+            $edit_v->setId_v($vehicleRow->id_v)
+                 ->setMarque($vehicleRow->marque)
+                 ->setModele($vehicleRow->modele)
+                 ->setCountry($vehicleRow->country)
+                 ->setYear($vehicleRow->year)
+                 ->setPrice($vehicleRow->price)
+                 ->setImage($vehicleRow->image)
+                 ->setDescription($vehicleRow->description)
+                 ->setAvailable($vehicleRow->available)
+                 ->setPrice($vehicleRow->price)
+                 ->setQuantity($vehicleRow->quantity)
+                 ->setDate_created_v($vehicleRow->date_created_v)
+                 ->getCategory()->setId_cat($vehicleRow->category_id);
+
+                return $edit_v;
+        }
+    }
+
 
 }

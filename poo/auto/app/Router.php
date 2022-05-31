@@ -44,6 +44,9 @@ class Router{
                case 'add_veh':
                 $this->avehCtr->addVehicle();
                 break;
+               case 'edit_veh':
+                $this->avehCtr->editVehicle();
+                break;
 
            }
        } 
