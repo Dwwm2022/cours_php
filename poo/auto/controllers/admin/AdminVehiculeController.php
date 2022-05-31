@@ -74,6 +74,38 @@ class AdminVehiculeController{
             $item_veh = new Vehicle();
             $item_veh->setId_v($id);
             $vehObj = $this->avmodel->editVehicle($item_veh);
+
+            if(isset($_POST['soumis']) && !empty($_POST['marque']) && !empty($_POST['price'])){
+                $marque = trim(addslashes(htmlspecialchars($_POST['marque'])));
+                $modele = trim(addslashes(htmlspecialchars($_POST['modele'])));
+                $country = trim(addslashes(htmlspecialchars($_POST['country'])));
+                $price = trim(addslashes(htmlspecialchars($_POST['price'])));
+                $quantity = trim(addslashes(htmlspecialchars($_POST['quantity'])));
+                $year = trim(addslashes(htmlspecialchars($_POST['year'])));
+                $cat = trim(addslashes(htmlspecialchars($_POST['cat'])));
+                $description = trim(addslashes(htmlspecialchars($_POST['description'])));
+                $image = $_FILES['image']['name'];
+
+                $destination = './assets/images/';
+                move_uploaded_file($_FILES['image']['tmp_name'], $destination.$image);
+    
+                $itemVeh = new Vehicle();
+                $itemVeh->setMarque($marque)
+                        ->setId_v( $id)
+                       ->setModele($modele)
+                       ->setCountry($country) 
+                       ->setYear($year)
+                       ->setPrice($price)
+                       ->setQuantity($quantity)
+                       ->setDescription($description)
+                       ->setImage($image)
+                       ->getCategory()->setId_cat($cat);
+
+                $nb = $this->avmodel->updateVehicule($itemVeh);
+                if($nb > 0){
+                    header('location:index.php?action=list_veh');
+                }
+            }
             
             $categories = $this->acmodel->getCategories();
             require_once(dirname(dirname(__DIR__)).'/views/admin/vehicles/editView.php');
