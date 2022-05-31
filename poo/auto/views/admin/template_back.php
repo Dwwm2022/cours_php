@@ -27,6 +27,20 @@
     <a href="index.php?action=add_veh">Ajout</a>
     <a href="index.php?action=list_veh">Liste</a>
   </div>
+  <button class="dropdown-btn">Rôles
+    <i class="fa fa-caret-down"></i>
+  </button>
+  <div class="dropdown-container">
+    <a href="index.php?action=add_r">Ajout</a>
+    <a href="index.php?action=list_r">Liste</a>
+  </div>
+  <button class="dropdown-btn">Utilisateurs
+    <i class="fa fa-caret-down"></i>
+  </button>
+  <div class="dropdown-container">
+    <a href="index.php?action=add_u">Ajout</a>
+    <a href="index.php?action=list_u">Liste</a>
+  </div>
   <a href="#contact">Search</a>
 </div>
 

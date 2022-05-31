@@ -14,6 +14,15 @@ class AdminRoleController{
     }
 
     public function addRole(){
+        if(isset($_POST['soumis']) && !empty($_POST['role'])){
+            $role = trim(addslashes(htmlentities($_POST['role'])));
+            $newRole = new Role();
+            $newRole->setName_r($role);
+            $isOk = $this->armodel->insertRole($newRole);
+            if($isOk){
+                header('location:index.php?action=list_r');
+            }
+        }
         require_once(dirname(dirname(__DIR__)).'/views/admin/roles/addView.php');
     }
 }

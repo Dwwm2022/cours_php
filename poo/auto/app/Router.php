@@ -17,14 +17,14 @@ class Router{
     private $acatCtr;
     private $avehCtr;
     private $arCtr;
-    private $auCrt;
+    private $auCtr;
 
     public function __construct()
     {
         $this->acatCtr = new AdminCategoryController();
         $this->avehCtr = new AdminVehiculeController();
         $this->arCtr = new AdminRoleController();
-        $this->auCrt = new AdminUserController();
+        $this->auCtr = new AdminUserController();
 
     }
 
@@ -63,6 +63,9 @@ class Router{
                 break;
                case 'add_r':
                 $this->arCtr->addRole();
+                break;
+               case 'list_u':
+                $this->auCtr->listUsers();
                 break;
 
 

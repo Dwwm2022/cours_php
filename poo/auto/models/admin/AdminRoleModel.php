@@ -20,4 +20,10 @@ class AdminRoleModel extends Driver{
         return $tabRoles;
     }
 
+    public function insertRole(Role $role){
+        $sql = "INSERT INTO role (name_r) Values(:r)";
+        $res = $this->getRequest($sql, ['r'=>$role->getName_r()]);
+        return $res;
+    }
+
 }
