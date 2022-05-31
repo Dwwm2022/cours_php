@@ -54,7 +54,16 @@ class AdminVehicleModel extends Driver{
     public function insertVehicle(Vehicle $veh){
         $sql = "INSERT INTO vehicle(marque, modele, country, price, quantity,year, image, description, category_id)
         VALUES(:marque,:modele,:country,:price,:quantity,:year,:image,:description, :id_cat)";
-        $vehParams = ["marque"=>$veh->getMarque(),"modele"=>$veh->getModele(), "country"=>$veh->getCountry(),"price"=>$veh->getPrice(),"quantity"=>$veh->getQuantity(),"year"=>$veh->getYear(),"image"=>$veh->getImage(), "description"=>$veh->getDescription(),"id_cat"=>$veh->getCategory()->getId_cat()];
+        $vehParams = [
+            "marque"=>$veh->getMarque(),
+            "modele"=>$veh->getModele(), 
+            "country"=>$veh->getCountry(),
+            "price"=>$veh->getPrice(),
+            "quantity"=>$veh->getQuantity(),
+            "year"=>$veh->getYear(),
+            "image"=>$veh->getImage(), 
+            "description"=>$veh->getDescription(),
+            "id_cat"=>$veh->getCategory()->getId_cat()];
         $res = $this->getRequest($sql, $vehParams);
         return $res;
     }

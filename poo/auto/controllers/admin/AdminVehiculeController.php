@@ -45,8 +45,8 @@ class AdminVehiculeController{
             move_uploaded_file($_FILES['image']['tmp_name'], $destination.$image);
 
             $newVeh = new Vehicle();
-            $newCat = new Category();
-            $newCat->setId_cat($cat);
+            //$newCat = new Category();
+            //$newCat->setId_cat($cat);
             $newVeh->setMarque($marque)
                    ->setModele($modele)
                    ->setCountry($country) 
@@ -55,7 +55,8 @@ class AdminVehiculeController{
                    ->setQuantity($quantity)
                    ->setDescription($description)
                    ->setImage($image)
-                   ->setCategory($newCat);
+                   ->getCategory()->setId_cat($cat);
+                   //->setCategory($newCat);
             
             $ok = $this->avmodel->insertVehicle($newVeh);
             if($ok){
@@ -68,5 +69,3 @@ class AdminVehiculeController{
     }
 }
 
-$adminCtr = new AdminVehiculeController();
-$adminCtr->addVehicle();

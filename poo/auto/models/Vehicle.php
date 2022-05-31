@@ -14,6 +14,11 @@ class Vehicle{
     private string $date_created_v = "";
     private ? Category $category = null;
 
+    public function __construct()
+    {
+        $this->category = new Category();
+    }
+
     /**
      * Get the value of id_v
      */ 
