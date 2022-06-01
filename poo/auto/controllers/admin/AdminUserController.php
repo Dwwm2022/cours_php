@@ -11,6 +11,7 @@ class AdminUserController{
     }
 
     public function listUsers(){
+        AdminAuthController::isLogged();
         if(isset($_GET['id']) && filter_var($_GET['id'], FILTER_VALIDATE_INT) && isset($_GET['status'])){
             $id = trim(addslashes(htmlentities($_GET['id'])));
             $status = trim(addslashes(htmlentities($_GET['status'])));
@@ -33,6 +34,7 @@ class AdminUserController{
         require_once(dirname(dirname(__DIR__)).'/views/admin/users/listView.php');
     }
     public function addUser(){
+        AdminAuthController::isLogged();
         $error = "";
         if(isset($_POST['soumis'])){
             if(!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)){

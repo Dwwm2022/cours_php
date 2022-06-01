@@ -9,6 +9,7 @@ class AdminVehiculeController{
     }
 
     public function listVehicles(){
+        AdminAuthController::isLogged();
         if(isset($_POST['soumis']) && !empty($_POST['search'])){
             $search = trim(addslashes(htmlentities($_POST['search'])));
             $vehicles = $this->avmodel->getVehicles($search);
@@ -19,6 +20,7 @@ class AdminVehiculeController{
     }
 
     public function removeVeh(){
+        AdminAuthController::isLogged();
         if(isset($_GET['id']) && filter_var($_GET['id'], FILTER_VALIDATE_INT) ){
             $id = trim(htmlentities(addslashes($_GET['id'])));
             $delete_veh = new Vehicle();
@@ -30,6 +32,7 @@ class AdminVehiculeController{
         }
     }
     public function addVehicle(){
+        AdminAuthController::isLogged();
         if(isset($_POST['soumis']) && !empty($_POST['marque']) && !empty($_POST['price'])){
             $marque = trim(addslashes(htmlspecialchars($_POST['marque'])));
             $modele = trim(addslashes(htmlspecialchars($_POST['modele'])));
@@ -69,6 +72,7 @@ class AdminVehiculeController{
     }
 
     public function editVehicle(){
+        AdminAuthController::isLogged();
         if(isset($_GET['id']) && filter_var($_GET['id'], FILTER_VALIDATE_INT) ){
             $id = trim(htmlentities(addslashes($_GET['id'])));
             $item_veh = new Vehicle();

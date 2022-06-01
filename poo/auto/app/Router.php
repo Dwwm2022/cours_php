@@ -12,6 +12,7 @@ require_once(dirname(__DIR__).'/controllers/admin/AdminCategoryController.php');
 require_once(dirname(__DIR__).'/controllers/admin/AdminVehiculeController.php');
 require_once(dirname(__DIR__).'/controllers/admin/AdminRoleController.php');
 require_once(dirname(__DIR__).'/controllers/admin/AdminUserController.php');
+require_once(dirname(__DIR__).'/controllers/admin/AdminAuthController.php');
 
 class Router{
     private $acatCtr;

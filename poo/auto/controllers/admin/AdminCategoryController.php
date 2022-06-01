@@ -13,11 +13,13 @@ class AdminCategoryController{
     }
 
     public function listCategories(){
+        AdminAuthController::isLogged();
         $categories = $this->acmodel->getCategories();
         require_once(dirname(dirname(__DIR__)).'/views/admin/categories/listView.php');
     }
 
     public function addCategory(){
+        AdminAuthController::isLogged();
         if(isset($_POST['soumis']) && !empty($_POST['cat'])){
             $nom_cat = trim(addslashes(htmlentities($_POST['cat'])));
             $newCat = new Category();
@@ -32,6 +34,7 @@ class AdminCategoryController{
     }
 
     public function removeCat(){
+        AdminAuthController::isLogged();
         if(isset($_GET['id']) && filter_var($_GET['id'], FILTER_VALIDATE_INT) ){
             $id = trim(htmlentities(addslashes($_GET['id'])));
             $delete_cat = new Category();
@@ -43,6 +46,7 @@ class AdminCategoryController{
         }
     }
     public function editCategory(){
+        AdminAuthController::isLogged();
         if(isset($_GET['id']) && filter_var($_GET['id'], FILTER_VALIDATE_INT) ){
 
             $id = trim(htmlentities(addslashes($_GET['id'])));
@@ -64,6 +68,7 @@ class AdminCategoryController{
     }
 
     public function listData(){
+        AdminAuthController::isLogged();
         $data = $this->acmodel->getData();
         require_once(dirname(dirname(__DIR__)).'/views/admin/dashbaordView.php');
     }

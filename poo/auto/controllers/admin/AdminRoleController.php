@@ -9,11 +9,13 @@ class AdminRoleController{
     }
 
     public function listRoles(){
+        AdminAuthController::isLogged();
         $roles = $this->armodel->getRoles();
         require_once(dirname(dirname(__DIR__)).'/views/admin/roles/listView.php');
     }
 
     public function addRole(){
+        AdminAuthController::isLogged();
         if(isset($_POST['soumis']) && !empty($_POST['role'])){
             $role = trim(addslashes(htmlentities($_POST['role'])));
             $newRole = new Role();
