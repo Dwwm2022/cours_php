@@ -53,7 +53,9 @@
     <h2 class="display-1 bg-secondary text-white text-center">
       <?= $title; ?>
     </h2>
+    <?php if(isset($_SESSION['AUTH'])): ?>
     <h3 class="text-end"><i class="fa fa-envelope-o" aria-hidden="true"></i> <?=$_SESSION['AUTH']->getEmail()?></h3>
+    <?php endif ?>
     <?= $content; ?>
   </div>
   <!-- JavaScript Bundle with Popper -->
