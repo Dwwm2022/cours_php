@@ -1,4 +1,4 @@
-<?php session_start(); var_dump($_SESSION['AUTH']); ob_start(); ?>
+<?php ob_start(); ?>
 <div class="row text-center">
   <div class="col-3">
     <div class="card text-bg-primary">

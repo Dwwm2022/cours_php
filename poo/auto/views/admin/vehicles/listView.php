@@ -28,7 +28,9 @@
             <th>Quantité</th>
             <th>Catégorie</th>
             <th>Créé le</th>
+            <?php if($_SESSION['AUTH']->getRole()->getId_r() < 3){ ?>
             <th colspan="2">Actions</th>
+            <?php } ?>
         </tr>
     </thead>
     <tbody>
@@ -46,6 +48,7 @@
             <td><?= $vehicle->getQuantity();?></td>
             <td><?= ucfirst($vehicle->getCategory()->getNom_cat());?></td>
             <td><?= date('d-m-Y',strtotime($vehicle->getDate_created_v()));?></td>
+            <?php if($_SESSION['AUTH']->getRole()->getId_r() < 3){ ?>
             <td>
                 <a class="btn btn-success" 
                 href="index.php?action=edit_veh&id=<?= $vehicle->getId_v();?>"
@@ -59,6 +62,7 @@
                 onclick="return confirm('Etes-vous sûr de supprimer ...')"
                 /> <i class="fa fa-trash"></i> Supprimer</a>
             </td>
+            <?php } ?>
         </tr>
         <?php endforeach ?>
     </tbody>

@@ -72,7 +72,12 @@ class Router{
                 $this->auCtr->addUser();
                 break;
                case 'login':
-                $this->auCtr->connection();  
+                $this->auCtr->connection();
+                break;
+               case 'logout':
+                AdminAuthController::signOut();
+                break;
+
                
            }
        } 

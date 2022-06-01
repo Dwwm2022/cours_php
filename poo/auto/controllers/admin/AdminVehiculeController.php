@@ -21,6 +21,7 @@ class AdminVehiculeController{
 
     public function removeVeh(){
         AdminAuthController::isLogged();
+        AdminAuthController::accessAdmin();
         if(isset($_GET['id']) && filter_var($_GET['id'], FILTER_VALIDATE_INT) ){
             $id = trim(htmlentities(addslashes($_GET['id'])));
             $delete_veh = new Vehicle();
@@ -73,6 +74,7 @@ class AdminVehiculeController{
 
     public function editVehicle(){
         AdminAuthController::isLogged();
+        AdminAuthController::accessAdmin();
         if(isset($_GET['id']) && filter_var($_GET['id'], FILTER_VALIDATE_INT) ){
             $id = trim(htmlentities(addslashes($_GET['id'])));
             $item_veh = new Vehicle();

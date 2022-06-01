@@ -13,7 +13,9 @@
 
   <div class="sidenav">
     <h1 class="text-white text-center"><i class="fa fa-car fa-2x"></i></h1>
+    <?php if(isset($_SESSION['AUTH'])){ ?>
     <a href="index.php?action=admin"><i class="fa fa-dashboard"></i>Tableau de board</a>
+    <a href="index.php?action=logout"><i class="fa fa-sign-out" aria-hidden="true"></i></i>Déconnexion</a>
 
     <button class="dropdown-btn">Catégories
       <i class="fa fa-caret-down"></i>
@@ -29,6 +31,7 @@
       <a href="index.php?action=add_veh">Ajout</a>
       <a href="index.php?action=list_veh">Liste</a>
     </div>
+    <?php if($_SESSION['AUTH']->getRole()->getId_r() == 2){ ?>
     <button class="dropdown-btn">Rôles
       <i class="fa fa-caret-down"></i>
     </button>
@@ -43,13 +46,14 @@
       <a href="index.php?action=add_u">Ajout</a>
       <a href="index.php?action=list_u">Liste</a>
     </div>
-    <a href="#contact">Search</a>
+    <?php }} ?>
   </div>
 
   <div class="main">
     <h2 class="display-1 bg-secondary text-white text-center">
       <?= $title; ?>
     </h2>
+    <h3 class="text-end"><i class="fa fa-envelope-o" aria-hidden="true"></i> <?=$_SESSION['AUTH']->getEmail()?></h3>
     <?= $content; ?>
   </div>
   <!-- JavaScript Bundle with Popper -->
