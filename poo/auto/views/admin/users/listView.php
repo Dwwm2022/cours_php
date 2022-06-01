@@ -23,7 +23,18 @@
             <td><?= ucfirst($user->getRole()->getName_r());?></td>
             <td><?=date('d-m-Y', strtotime($user->getDate_created_u())); ?></td>
             <td>
-                <a class="btn btn-success" 
+                <?php
+                echo($user->getStatus())
+                ? "<a class='btn btn-success' 
+                    href='index.php?action=list_u&id=".$user->getId_u()."&status=".$user->getStatus()."'
+                     /> <i class='fa fa-unlock'></i> Activé</a>"
+                : "<a class='btn btn-warning' 
+                href='index.php?action=list_u&id=".$user->getId_u()."&status=".$user->getStatus()."'
+                 /> <i class='fa fa-lock'></i> Désactivé</a>"
+
+                 ?>
+
+                <a class="btn btn-primary" 
                 href="index.php?action=edit_cat&id=<?=$user->getId_u();?>"
                 /> <i class="fa fa-edit"></i> Editer</a>
                 <!-- Supprimer -->

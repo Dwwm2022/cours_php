@@ -40,4 +40,12 @@ class AdminUserModel extends Driver
         $res = $this->getRequest($sql,  $userParams);
         return $res;
     }
+
+    public function updateUser(User $user){
+        $sql = "UPDATE user
+                SET status = :status
+                WHERE id_u = :id_u";
+        $res = $this->getRequest($sql, ["status"=>$user->getStatus(), "id_u"=>$user->getId_u()]);
+        return $res->rowCount();
+    }
 }

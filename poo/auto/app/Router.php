@@ -70,6 +70,7 @@ class Router{
                case 'add_u':
                 $this->auCtr->addUser();
                 break;
+               
            }
        } 
     }

@@ -2,6 +2,7 @@
 <div class="row">
     <div class="offset-3 col-6">
         <div class="card">
+            <div class="card-header"><?= $error; ?></div>
             <div class="card-body">
                 <form action="<?php $_SERVER['PHP_SELF']; ?>" method="post">
                     <div class="form-group">
@@ -24,8 +25,8 @@
                         <label for="role">Rôle</label>
                         <select name="role" id="role" class="form-control">
                             <option hidden>Choisir</option>
-                            <?php foreach($roles as $role): ?>
-                            <option value="<?= $role->getId_r();?>"><?= $role->getName_r();?></option>
+                            <?php foreach ($roles as $role) : ?>
+                                <option value="<?= $role->getId_r(); ?>"><?= $role->getName_r(); ?></option>
                             <?php endforeach ?>
                         </select>
                     </div>
@@ -41,4 +42,4 @@
 <?php
 $title = "Ajout d'un utilisateur";
 $content = ob_get_clean();
-require_once(dirname(__DIR__).'/template_back.php');
+require_once(dirname(__DIR__) . '/template_back.php');

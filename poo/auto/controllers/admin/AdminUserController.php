@@ -11,6 +11,24 @@ class AdminUserController{
     }
 
     public function listUsers(){
+        if(isset($_GET['id']) && filter_var($_GET['id'], FILTER_VALIDATE_INT) && isset($_GET['status'])){
+            $id = trim(addslashes(htmlentities($_GET['id'])));
+            $status = trim(addslashes(htmlentities($_GET['status'])));
+            if($status == 1){
+                $status = 0;
+            }else{
+                $status = 1;
+            }
+
+            $user = new User();
+            $user->setId_u($id)
+                 ->setStatus($status);
+            $nb = $this->aumodel->updateUser($user);
+            if($nb > 0){
+                header('location:index.php?action=list_u');
+            }
+
+        }
         $users = $this->aumodel->getUsers();
         require_once(dirname(dirname(__DIR__)).'/views/admin/users/listView.php');
     }
@@ -18,9 +36,9 @@ class AdminUserController{
         $error = "";
         if(isset($_POST['soumis'])){
             if(!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)){
-                $error = '<div class="alert alert-danger">L\'email est invalide.</div>';
+                $error = '<div class="alert alert-danger text-center fw-bold">L\'email est invalide.</div>';
             }elseif (!preg_match("/[a-zA-Z0-9]{4,8}/", $_POST['pass'])) {
-                $error = '<div class="alert alert-danger">Le mot de pass est invalide.</div>';
+                $error = '<div class="alert alert-danger text-center fw-bold">Le mot de passe est invalide.</div>';
             }else{
                 $firstname = trim(addslashes(htmlentities($_POST['firstname'])));
                 $lastname = trim(addslashes(htmlentities($_POST['lastname'])));
