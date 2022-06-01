@@ -43,7 +43,7 @@ class AdminUserController{
                 $firstname = trim(addslashes(htmlentities($_POST['firstname'])));
                 $lastname = trim(addslashes(htmlentities($_POST['lastname'])));
                 $email = trim(addslashes(htmlentities($_POST['email'])));
-                $pass = password_hash(trim(addslashes(htmlentities($_POST['firstname']))),PASSWORD_DEFAULT) ;
+                $pass = password_hash(trim(addslashes(htmlentities($_POST['pass']))),PASSWORD_DEFAULT) ;
                 $role = trim(addslashes(htmlentities($_POST['role'])));
 
                $newUser = new User();
@@ -60,5 +60,45 @@ class AdminUserController{
         }
         $roles = $this->armodel->getRoles();
         require_once(dirname(dirname(__DIR__)).'/views/admin/users/addView.php');
+    }
+
+    public function connection(){
+        $error = "";
+        if(isset($_POST['soumis'])){
+            if(filter_var($_POST['email'], FILTER_VALIDATE_EMAIL) && strlen($_POST['pass']) >= 4){
+                $email = trim(addslashes(htmlentities($_POST['email'])));
+                $pass = trim(addslashes(htmlentities($_POST['pass'])));
+                $user = new User();
+                $user->setEmail($email)
+                     ->setPass($pass);
+                $data_u = $this->aumodel->signIn($user);
+                if(!empty($data_u)){
+                    if($data_u->getStatus() > 0){
+                        if(password_verify($pass, $data_u->getPass())){
+                            session_start();
+                            $_SESSION['AUTH'] = $data_u;
+                            header('location:index.php?action=admin');
+                        }else{
+                            $error = '<div class="alert alert-danger text-center fw-bold">
+                                Votre mot de passe ne correspond pas.
+                            </div>'; 
+                        }
+                    }else{
+                        $error = '<div class="alert alert-danger text-center fw-bold">
+                         Votre compte est désactivé.
+                        </div>';  
+                    }
+                }else{
+                    $error = '<div class="alert alert-danger text-center fw-bold">
+                    L\'email n\'existe pas.
+                    </div>'; 
+                }
+            }else{
+                $error = '<div class="alert alert-danger text-center fw-bold">
+                L\'email ou/et le mot de passe est/sont invalide(s)
+                </div>';
+            }
+        }
+        require_once(dirname(dirname(__DIR__)).'/views/admin/users/loginView.php');
     }
 }

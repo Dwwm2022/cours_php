@@ -48,4 +48,29 @@ class AdminUserModel extends Driver
         $res = $this->getRequest($sql, ["status"=>$user->getStatus(), "id_u"=>$user->getId_u()]);
         return $res->rowCount();
     }
+
+    public function signIn(User $user){
+        $sql = "SELECT * 
+        FROM user 
+        INNER JOIN role 
+        ON user.role_id = role.id_r
+         WHERE email = :email";
+        $res = $this->getRequest($sql, ["email"=>$user->getEmail()]);
+        if($res->rowCount() > 0){
+            $data_u = $res->fetch(PDO::FETCH_OBJ);
+            $userObj = new User();
+            $userObj->setId_u($data_u->id_u)
+                    ->setLastname($data_u->lastname)
+                    ->setFirstname($data_u->firstname)
+                    ->setEmail($data_u->email)
+                    ->setPass($data_u->pass)
+                    ->setStatus($data_u->status)
+                    ->getRole()
+                        ->setId_r($data_u->id_r)
+                        ->setName_r($data_u->name_r);
+            return $userObj;
+        }else{
+            return 0;
+        }
+    }
 }

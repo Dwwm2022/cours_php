@@ -56,10 +56,19 @@ class AdminCategoryModel extends Driver{
     }
 
     public function getData(){
-        $sql = "SELECT * FROM category";
-        $res = $this->getRequest($sql);
-        if($res->rowCount() > 0){
-            return ['admin'=>$res->rowCount()];
-        }
+        $sqlc = "SELECT * FROM category";
+        $resc = $this->getRequest($sqlc);
+
+        $sqlv = "SELECT * FROM vehicle";
+        $resv = $this->getRequest($sqlv);
+
+        $sqlr = "SELECT * FROM role";
+        $resr = $this->getRequest($sqlr);
+
+        $sqlu = "SELECT * FROM user";
+        $resu = $this->getRequest($sqlu);
+
+        return ['nbc'=>$resc->rowCount(), 'nbv'=>$resv->rowCount(), 'nbr'=>$resr->rowCount(), 'nbu'=>$resu->rowCount()];
+    
     }
 }

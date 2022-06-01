@@ -70,6 +70,8 @@ class Router{
                case 'add_u':
                 $this->auCtr->addUser();
                 break;
+               case 'login':
+                $this->auCtr->connection();  
                
            }
        } 
