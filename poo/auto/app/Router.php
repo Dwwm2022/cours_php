@@ -81,6 +81,21 @@ class Router{
                 case 'logout':
                  AdminAuthController::signOut();
                  break;
+                case 'about':
+                 $this->phCtr->about();
+                 break;
+                case 'show':
+                 $this->phCtr->detail();
+                 break;  
+                case 'pay': 
+                 $this->phCtr->payment();
+                 break; 
+                 case 'success': 
+                    $this->phCtr->confirmation();
+                    break;
+                case 'cancel': 
+                    $this->phCtr->annuler();
+                    break;  
                 default:
                  throw new Exception("Action non définie");
             }

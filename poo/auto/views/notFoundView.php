@@ -17,7 +17,7 @@
             </h1>
             <strong><?=$errorMsg;?></strong>
             <p class="p-5">
-                <a href="" class="btn btn-dark">
+                <a href="index.php" class="btn btn-dark">
                 <i class="fa fa-home">Accueil</i>
                 </a>
             </p>

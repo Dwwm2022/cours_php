@@ -15,16 +15,16 @@
     <h1 class="text-white text-center"><i class="fa fa-car fa-2x"></i></h1>
     <?php if(isset($_SESSION['AUTH'])){ ?>
     <a href="index.php?action=admin"><i class="fa fa-dashboard"></i>Tableau de board</a>
-    <a href="index.php?action=logout"><i class="fa fa-sign-out" aria-hidden="true"></i></i>Déconnexion</a>
+    <a href="index.php?action=logout"><i class="fa fa-sign-out" aria-hidden="true"></i></i> Déconnexion</a>
 
-    <button class="dropdown-btn">Catégories
+    <button class="dropdown-btn"><i class="fa fa-list-alt"></i> Catégories
       <i class="fa fa-caret-down"></i>
     </button>
     <div class="dropdown-container">
       <a href="index.php?action=add_cat">Ajout</a>
       <a href="index.php?action=list_cat">Liste</a>
     </div>
-    <button class="dropdown-btn">Véhicules
+    <button class="dropdown-btn"><i class="fa fa-car"></i> Véhicules
       <i class="fa fa-caret-down"></i>
     </button>
     <div class="dropdown-container">
@@ -32,14 +32,15 @@
       <a href="index.php?action=list_veh">Liste</a>
     </div>
     <?php if($_SESSION['AUTH']->getRole()->getId_r() == 2){ ?>
-    <button class="dropdown-btn">Rôles
+    <button class="dropdown-btn"><i class="fa fa-shield" aria-hidden="true"></i>
+         Rôles
       <i class="fa fa-caret-down"></i>
     </button>
     <div class="dropdown-container">
       <a href="index.php?action=add_r">Ajout</a>
       <a href="index.php?action=list_r">Liste</a>
     </div>
-    <button class="dropdown-btn">Utilisateurs
+    <button class="dropdown-btn"><i class="fa fa-users"></i> Utilisateurs
       <i class="fa fa-caret-down"></i>
     </button>
     <div class="dropdown-container">
