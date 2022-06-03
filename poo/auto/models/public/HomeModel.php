@@ -33,8 +33,18 @@ class HomeModel extends Driver
 
     public function updateStock(Vehicle $veh)
     {
-        $sql = "UPDATE vehicle SET quantity = :quantity WHERE id_v = :id";
-        $result = $this->getRequest($sql, ['quantity' => $veh->getQuantity(), 'id' => $veh->getId_v()]);
+        if($veh->getQuantity() == 0){
+
+            $sql = "UPDATE vehicle SET quantity = :quantity WHERE id_v = :id";
+            $result = $this->getRequest($sql, ['quantity' => $veh->getQuantity(), 'id' => $veh->getId_v()]);
+            
+            $sql1 = "UPDATE vehicle SET available = :available WHERE id_v = :id";
+            $result1 = $this->getRequest($sql1, ['available' => 0, 'id' => $veh->getId_v()]);
+        }else{
+            $sql = "UPDATE vehicle SET quantity = :quantity WHERE id_v = :id";
+            $result = $this->getRequest($sql, ['quantity' => $veh->getQuantity(), 'id' => $veh->getId_v()]);
+        }
         return $result->rowCount();
+
     }
 }

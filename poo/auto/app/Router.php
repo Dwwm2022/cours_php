@@ -84,6 +84,12 @@ class Router{
                 case 'about':
                  $this->phCtr->about();
                  break;
+                case 'contact':
+                 $this->phCtr->contact();
+                 break;
+                case 'blog':
+                 $this->phCtr->news();
+                 break;
                 case 'show':
                  $this->phCtr->detail();
                  break;  

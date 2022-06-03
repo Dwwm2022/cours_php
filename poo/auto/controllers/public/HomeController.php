@@ -24,8 +24,6 @@ class HomeController
         require_once(dirname(dirname(__DIR__)) . '/views/public/vehicles/listView.php');
     }
 
-    public function about(){}
-
     public function detail()
     {
         if (isset($_GET['id']) && filter_var($_GET['id'], FILTER_VALIDATE_INT)) {
@@ -85,7 +83,15 @@ class HomeController
 
     public function annuler()
     {
-       
         require_once(dirname(dirname(__DIR__)) . '/views/public/vehicles/cancel.php');
+    }
+    public function about(){
+        require_once(dirname(dirname(__DIR__)) . '/views/public/vehicles/aboutView.php'); 
+    }
+    public function contact(){
+        require_once(dirname(dirname(__DIR__)) . '/views/public/vehicles/contactView.php');
+    }
+    public function news(){
+        require_once(dirname(dirname(__DIR__)) . '/views/public/vehicles/newsView.php');
     }
 }

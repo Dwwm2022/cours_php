@@ -24,7 +24,7 @@
                 </button>
             </form>
             <?php }else{ ?>
-                <a class="btn btn-warning" href="">Commander</a>
+                <a class="btn btn-warning" href="index.php?action=order&id=<?= $vehObj->getId_v(); ?>">Commander</a>
             <?php } ?>
         </div>
         <div class="col-md-8">
