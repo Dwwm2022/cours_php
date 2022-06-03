@@ -43,9 +43,7 @@ class HomeController
     public function payment()
     {
         if (isset($_POST) && !empty($_POST['email']) && !empty($_POST['quantite'])) {
-            $nb = $_POST['nb'];
-            $q = $_POST['quantite'];
-            $id = $_POST['id'];
+           
             \Stripe\Stripe::setApiKey('sk_test_51IM8YvEO2Yrc49j4dgti1ArXHb9ZDqFBXbQv21rjVJ0TzUoiCZNhm8GpMOpUf1MHxnAg7bjWhRtHuH5AcWyjg4Df00uTkqrzjm');
 
             header('Content-Type: application/json');
@@ -81,7 +79,7 @@ class HomeController
         $veh->setId_v($_SESSION['pay']['id']);
         $veh->setQuantity($newStock);
 
-        //$nbLine = $this->phmodel->updateStock($veh);
+        $nbLine = $this->phmodel->updateStock($veh);
         require_once(dirname(dirname(__DIR__)) . '/views/public/vehicles/success.php');
     }
 

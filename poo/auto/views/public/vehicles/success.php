@@ -1,4 +1,4 @@
-<?php ob_start();?>
+<?php var_dump($veh); ob_start();?>
 
 <div class="container">
 <h2>Confirmation d'achat </h2>
