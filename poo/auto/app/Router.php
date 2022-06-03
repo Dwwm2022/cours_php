@@ -90,7 +90,7 @@ class Router{
                 case 'pay': 
                  $this->phCtr->payment();
                  break; 
-                 case 'success': 
+                case 'success': 
                     $this->phCtr->confirmation();
                     break;
                 case 'cancel': 

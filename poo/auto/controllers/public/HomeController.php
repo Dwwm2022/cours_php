@@ -3,7 +3,6 @@ session_start();
 require './vendor/autoload.php';
 class HomeController
 {
-
     private $avmodel;
     private $acmodel;
     private $phmodel;
@@ -25,9 +24,8 @@ class HomeController
         require_once(dirname(dirname(__DIR__)) . '/views/public/vehicles/listView.php');
     }
 
-    public function about()
-    {
-    }
+    public function about(){}
+
     public function detail()
     {
         if (isset($_GET['id']) && filter_var($_GET['id'], FILTER_VALIDATE_INT)) {
@@ -40,9 +38,10 @@ class HomeController
             require_once(dirname(dirname(__DIR__)) . '/views/public/vehicles/detailView.php');
         }
     }
+    
+    
     public function payment()
     {
-
         if (isset($_POST) && !empty($_POST['email']) && !empty($_POST['quantite'])) {
             $nb = $_POST['nb'];
             $q = $_POST['quantite'];
@@ -82,7 +81,7 @@ class HomeController
         $veh->setId_v($_SESSION['pay']['id']);
         $veh->setQuantity($newStock);
 
-        $nbLine = $this->phmodel->updateStock($veh);
+        //$nbLine = $this->phmodel->updateStock($veh);
         require_once(dirname(dirname(__DIR__)) . '/views/public/vehicles/success.php');
     }
 
